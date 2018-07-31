@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="测试,接口测试," />
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="宁大大噢耶">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="原创首发：  关于接口自动化的那些事 - 基于 Python  参考文章：  接口自动化测试的最佳工程实践 (ApiTestEngine) Http 接口测试框架  开始之前说一些废话 前段时间老大让我搞个接口自动化，好气啊我只想当个纯粹的点点点！（真没志气真没用，真给咱测试丢脸~！）后来我挑灯夜读，经过两个星期的挣扎终于把用例搞出来了！噢哈哈真是大快人心啊我真个聪明的家伙给自己一个一百分！我把做">
+<meta name="keywords" content="测试,接口测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于接口自动化的那些事 - 基于 Python">
+<meta property="og:url" content="http://yoursite.com/2017/03/23/关于接口自动化的那些事-基于-Python/index.html">
 <meta property="og:site_name" content="宁大大噢耶">
+<meta property="og:description" content="原创首发：  关于接口自动化的那些事 - 基于 Python  参考文章：  接口自动化测试的最佳工程实践 (ApiTestEngine) Http 接口测试框架  开始之前说一些废话 前段时间老大让我搞个接口自动化，好气啊我只想当个纯粹的点点点！（真没志气真没用，真给咱测试丢脸~！）后来我挑灯夜读，经过两个星期的挣扎终于把用例搞出来了！噢哈哈真是大快人心啊我真个聪明的家伙给自己一个一百分！我把做">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-31T10:53:05.127Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="宁大大噢耶">
+<meta name="twitter:title" content="关于接口自动化的那些事 - 基于 Python">
+<meta name="twitter:description" content="原创首发：  关于接口自动化的那些事 - 基于 Python  参考文章：  接口自动化测试的最佳工程实践 (ApiTestEngine) Http 接口测试框架  开始之前说一些废话 前段时间老大让我搞个接口自动化，好气啊我只想当个纯粹的点点点！（真没志气真没用，真给咱测试丢脸~！）后来我挑灯夜读，经过两个星期的挣扎终于把用例搞出来了！噢哈哈真是大快人心啊我真个聪明的家伙给自己一个一百分！我把做">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/23/关于接口自动化的那些事-基于-Python/"/>
 
 
 
 
 
-  <title>宁大大噢耶</title>
+  <title>关于接口自动化的那些事 - 基于 Python | 宁大大噢耶</title>
   
 
 
@@ -140,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,9 +238,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -266,9 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/23/关于接口自动化的那些事-基于-Python/" itemprop="url">关于接口自动化的那些事 - 基于 Python</a></h1>
+          <h1 class="post-title" itemprop="name headline">关于接口自动化的那些事 - 基于 Python</h1>
         
 
         <div class="post-meta">
@@ -351,9 +353,7 @@
       
 
       
-        
-          
-            <p>原创首发：</p>
+        <p>原创首发：</p>
 <ul>
 <li><a href="https://testerhome.com/topics/8091" target="_blank" rel="noopener">关于接口自动化的那些事 - 基于 Python</a></li>
 </ul>
@@ -542,8 +542,6 @@
 <p>好啦，看到这个标题，你就知道我想说什么啦~花了整整一天的时间去编写这篇文章，还要担心产品和开发过来找我定位问题，我可是冒着生命危险在给大家伙分享我的学习经历和成果呢！！:sob: :sob:  自己写完也检查好几遍了，以我有限的脑力和胡言乱语，我完成了人生中第一篇博客分享~这感觉就像是拱了一颗优质大白菜，哈哈哈哈哈~:laughing:  各路兄弟姐妹，很感谢你能看到这里，同时也特别希望你们可以给我提出意见，在测试的这条路上，我始终都是自己一个人瞎搞乱搞，搞出来的东西也没人帮我检验正误，搞不出来的东西我也还是搞不出来~:pensive: 但是好在我肯努力呀，肯学呀，不会就是不会，我从来不会掩饰自己的无知，但也不会卖弄自己的本事，其实就是没本事卖弄而已:joy:  期待大家给与我的意见~嗯！End~！ :first_quarter_moon_with_face: </p>
 </blockquote>
 
-          
-        
       
     </div>
     
@@ -558,14 +556,22 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/测试/" rel="tag"># 测试</a>
+          
+            <a href="/tags/接口测试/" rel="tag"># 接口测试</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -575,10 +581,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -586,6 +593,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -606,8 +617,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -671,6 +691,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始之前说一些废话"><span class="nav-text">开始之前说一些废话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步-Python的安装配置"><span class="nav-text">第一步 Python的安装配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步-Python编辑器的选择及使用"><span class="nav-text">第二步 Python编辑器的选择及使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三步-打开Python编辑器，开始练习吧"><span class="nav-text">第三步 打开Python编辑器，开始练习吧</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络请求模拟小技巧"><span class="nav-text">网络请求模拟小技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展库requests"><span class="nav-text">扩展库requests</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的接口自动化测试用例"><span class="nav-text">简单的接口自动化测试用例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#做接口测试前的准备"><span class="nav-text">做接口测试前的准备</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口自动化实践"><span class="nav-text">接口自动化实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化接口自动化用例"><span class="nav-text">优化接口自动化用例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -812,6 +848,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
