@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="环境," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言此系列作为我学习支付过程的记录文，第一次接触支付，最终目的是实现模拟第三方支付平台Mock。有啥不对的欢迎各路英雄好汉指正哈~~~">
+<meta name="keywords" content="环境">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PayPal支付原理">
+<meta property="og:url" content="https://ning777.github.io/2018/08/02/PayPal支付原理/index.html">
+<meta property="og:site_name" content="宁大大噢耶">
+<meta property="og:description" content="前言此系列作为我学习支付过程的记录文，第一次接触支付，最终目的是实现模拟第三方支付平台Mock。有啥不对的欢迎各路英雄好汉指正哈~~~">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/PayPal支付原理/1.png">
+<meta property="og:updated_time" content="2018-08-02T11:35:08.311Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PayPal支付原理">
+<meta name="twitter:description" content="前言此系列作为我学习支付过程的记录文，第一次接触支付，最终目的是实现模拟第三方支付平台Mock。有啥不对的欢迎各路英雄好汉指正哈~~~">
+<meta name="twitter:image" content="https://ning777.github.io/2018/08/02/PayPal支付原理/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ning777.github.io/2018/08/02/PayPal支付原理/"/>
+
+
+
+
+
+  <title>PayPal支付原理 | 宁大大噢耶</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">宁大大噢耶</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我不会写代码</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ning777.github.io/2018/08/02/PayPal支付原理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ningxw">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宁大大噢耶">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PayPal支付原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T19:22:53+08:00">
+                2018-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/环境搭建/" itemprop="url" rel="index">
+                    <span itemprop="name">环境搭建</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>此系列作为我学习支付过程的记录文，第一次接触支付，最终目的是实现模拟第三方支付平台Mock。有啥不对的欢迎各路英雄好汉指正哈~~~</p>
+<a id="more"></a>
+<h2 id="第一部分，弄清支付的实现原理"><a href="#第一部分，弄清支付的实现原理" class="headerlink" title="第一部分，弄清支付的实现原理"></a>第一部分，弄清支付的实现原理</h2><p>要想对支付进行全面深入的测试，弄清支付系统的实现原理是必不可少哒~在此我就不罗里吧嗦的了，给大家强行安利一个大神精华帖，传送门 -&gt; <a href="https://testerhome.com/topics/9356" target="_blank" rel="noopener">关于支付、关于安全的一些总结 (GOOGLE, APPLE, PAYPAL)</a> ，里面对支付和安全的一些内容都讲解得非常清楚，受益匪浅哦~我是不会告诉你我连第一句话都是抄袭过来的~</p>
+<h2 id="第二部分，阅读支付平台的开发文档"><a href="#第二部分，阅读支付平台的开发文档" class="headerlink" title="第二部分，阅读支付平台的开发文档"></a>第二部分，阅读支付平台的开发文档</h2><p>这么快就来到这么难的一步了吗~</p>
+<p>大牛说了，给支付平台做Mock前，要想找到最佳的实现方式，阅读支付平台的开发文档是个不错的选择~阅读文档后，你会对每个接口的请求和返回的内容格式都很清晰，清楚接下来你要拿什么数据做什么事。因此我也老老实实的去阅读了PayPal的开发文档，结果是脑子果然大了两倍！</p>
+<p>我公司目前的项目只支持PayPal第三方支付平台，且业务需求是实现给项目打赏，功能比较单一，因此下列的内容都是针对自己项目展开的一些学习过程，从而入入支付的坑，所以大牛可以绕道了哈哈哈~~</p>
+<h4 id="PayPal-Payments-API"><a href="#PayPal-Payments-API" class="headerlink" title="PayPal Payments API"></a><a href="https://developer.paypal.com/docs/api/payments/" target="_blank" rel="noopener">PayPal Payments API</a></h4><p>本项目支付调用的是PayPal的SDK，主要关注Create 和 Execute 两个接口，使用SDK的好处是通信过程中只要按照格式要求去请求接口就OK了，不需要牵扯到加密等复杂部分。以下是项目主要请求的内容和格式，以及返回的内容和格式。（主要来自Payments API，为图方便而记录下来，有需要的可以去看文档哈~）</p>
+<ul>
+<li><strong>Create payment</strong></li>
+</ul>
+<p>Create请求的格式和内容：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">curl -v -X POST https://api.sandbox.paypal.com/v1/payments/payment   <span class="comment">#请求地址</span></span><br><span class="line">-H <span class="string">"Content-Type:application/json"</span>        <span class="comment">#请求头</span></span><br><span class="line">-H <span class="string">"Authorization: Bearer &lt;Access-Token&gt;"</span>     <span class="comment">#请求头，带Access-Token</span></span><br><span class="line">-d <span class="string">'       #请求数据内容</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    "intent":"sale",</span></span><br><span class="line"><span class="string">    "payer":&#123;</span></span><br><span class="line"><span class="string">        "payment_method":"paypal"</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    "transactions":[</span></span><br><span class="line"><span class="string">        &#123;</span></span><br><span class="line"><span class="string">            "amount":&#123;</span></span><br><span class="line"><span class="string">                "total":"30.11",</span></span><br><span class="line"><span class="string">                "currency":"USD"</span></span><br><span class="line"><span class="string">            &#125;,</span></span><br><span class="line"><span class="string">            "description":"The payment transaction description."</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">    ],</span></span><br><span class="line"><span class="string">    "redirect_urls":&#123;</span></span><br><span class="line"><span class="string">        "return_url":"https://www.paypal.com/return",      #可以设置为任一可以访问的url</span></span><br><span class="line"><span class="string">        "cancel_url":"https://www.paypal.com/cancel"      #可以设置为任一可以访问的url</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;'</span></span><br></pre></td></tr></table></figure></p>
+<p>Create返回的格式和内容：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    "id":"PAY-1B56960729604235TKQQIYVY",          #作为execute请求的参数</span><br><span class="line">    "intent":"sale",</span><br><span class="line">    "state":"created",</span><br><span class="line">    "payer":&#123;</span><br><span class="line">        "payment_method":"paypal"</span><br><span class="line">    &#125;,</span><br><span class="line">    "transactions":[</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"amount"</span>:&#123;</span><br><span class="line">                <span class="attr">"total"</span>:<span class="string">"30.11"</span>,</span><br><span class="line">                <span class="attr">"currency"</span>:<span class="string">"USD"</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">"description"</span>:<span class="string">"The payment transaction description."</span>,</span><br><span class="line">            <span class="attr">"related_resources"</span>:[</span><br><span class="line"></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    "create_time":"2017-09-07T08:51:59Z",</span><br><span class="line">    "links":[</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"href"</span>:<span class="string">"https://api.sandbox.paypal.com/v1/payments/payment/PAY-1B56960729604235TKQQIYVY"</span>,</span><br><span class="line">            <span class="attr">"rel"</span>:<span class="string">"self"</span>,</span><br><span class="line">            <span class="attr">"method"</span>:<span class="string">"GET"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            "href":"https://api.sandbox.paypal.com/v1/payments//cgi-bin/webscr?cmd=_express-checkout&amp;token=EC-60385559L1062554J",        #请求payer_id的approval_url</span><br><span class="line">            "rel":"approval_url",</span><br><span class="line">            "method":"REDIRECT"</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"href"</span>:<span class="string">"https://api.sandbox.paypal.com/v1/payments/payment/PAY-1B56960729604235TKQQIYVY/execute"</span>,</span><br><span class="line">            <span class="attr">"rel"</span>:<span class="string">"execute"</span>,</span><br><span class="line">            <span class="attr">"method"</span>:<span class="string">"POST"</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>Execute approved PayPal payment</strong></li>
+</ul>
+<p>Execute请求的格式和内容：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">curl -v -X POST https://api.sandbox.paypal.com/v1/payments/payment/PAY-9N9834337A9191208KOZOQWI/execute </span><br><span class="line">-H "Content-Type:application/json" </span><br><span class="line">-H "Authorization: Bearer &lt;Access-Token&gt;"        #请求头，带Access-Token</span><br><span class="line">-d '&#123;</span><br><span class="line">  "payer_id": "CR87QHB7JTRSC"                   #确认支付的id标识</span><br><span class="line">&#125;'</span><br></pre></td></tr></table></figure></p>
+<p>Execute返回的格式和内容：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"id"</span>: <span class="string">"PAY-9N9834337A9191208KOZOQWI"</span>,</span><br><span class="line">  <span class="attr">"create_time"</span>: <span class="string">"2017-07-01T16:56:57Z"</span>,</span><br><span class="line">  <span class="attr">"update_time"</span>: <span class="string">"2017-07-01T17:05:41Z"</span>,</span><br><span class="line">  "state": "approved",                          #支付后的状态</span><br><span class="line">  "intent": "order",</span><br><span class="line">  "payer": &#123;</span><br><span class="line">    "payment_method": "paypal",</span><br><span class="line">    "payer_info": &#123;</span><br><span class="line">      "email": "qa152-biz@paypal.com",</span><br><span class="line">      "first_name": "Thomas",</span><br><span class="line">      "last_name": "Miller",</span><br><span class="line">      "payer_id": "PUP87RBJV8HPU",</span><br><span class="line">    ……</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">………………参考官方示例response</span><br></pre></td></tr></table></figure></p>
+<p>获取到execute的返回值，主要关注state关键字。<br><img src="/2018/08/02/PayPal支付原理/1.png" alt=""></p>
+<p>返回的值有created，approved，failed，以此来判断支付的状态。到了这一步，支付的整个流程就全部走通啦！以上只展示了成功的流程，对于其他异常的流程，可以自己修改请求去获取，这里就不累赘介绍啦！</p>
+<h2 id="第三部分，有关参数和细节"><a href="#第三部分，有关参数和细节" class="headerlink" title="第三部分，有关参数和细节"></a>第三部分，有关参数和细节</h2><ul>
+<li><p><strong>1.关于<a href="https://developer.paypal.com/docs/api/overview/#get-an-access-token" target="_blank" rel="noopener">Access-Token的获取</a></strong></p>
+<p>PayPal后台有两个关键参数 clientId 和 clientSecret，这些可以在 Paypal 后台配置，把这两个参数请求给PayPal，然后会返回一个 access token。（前提是你需要登录PayPal的后台哦~关于账号密码，可以找你们的开发哥哥拿，简单粗暴！）</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -v https://api.sandbox.paypal.com/v1/oauth2/token \   </span><br><span class="line">   -H &quot;Accept: application/json&quot; \</span><br><span class="line">   -H &quot;Accept-Language: en_US&quot; \</span><br><span class="line">   -u &quot;&lt;client_id&gt;:&lt;secret&gt;&quot; \</span><br><span class="line">   -d &quot;grant_type=client_credentials&quot;</span><br></pre></td></tr></table></figure>
+<p>  PayPal后台关键参数入口在<figure class="highlight plain"><figcaption><span>Apps & Credentials -> REST Api apps -> 你的项目```，点进去之后就可以看到了，具体的页面我就不展示啦，我害怕泄露天机然后被老板炒鱿鱼！:joy: :joy: </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![](PayPal支付原理/2.png)</span><br><span class="line"></span><br><span class="line">- **2.关于payer_id的获取**</span><br><span class="line">  payer_id的获取需要从Create请求的返回结果approval_url中请求得到，需要在PayPal确认支付后才会返回给页面，直接一点的方法是在浏览器中输入approval_url，使用抓包工具截取返回结果，从而获取到payer_id，如图所示：</span><br><span class="line"></span><br><span class="line">![](PayPal支付原理/3.png)</span><br><span class="line"></span><br><span class="line">- **3.关于curl命令的运行工具**</span><br><span class="line">  墙裂推荐使用[Babun](http://babun.github.io/),一个 Windows 上的开箱即用的壳程序，安装 Babun 十分简单，解压缩包之后，执行里面的 install.bat 批处理脚本，然后静静等待执行结束即可，过程有些长，但一定要等待执行结束哦，安装结束后 Babun 会自动运行，且在桌面上生成快捷方式，谁用谁知道哈~~:sunglasses: :sunglasses: :sunglasses: </span><br><span class="line"></span><br><span class="line">- **4.使用python运行curl命令**</span><br><span class="line">  是不是很头疼啊现在，不知道怎么转化，谷歌来谷歌去的，一会使用pycurl，一会想将curl命令转化为requests方式，就是找不到最佳的实现方式，就是找不到一种简单粗暴又无脑的方式去转化呢？！！！:sob: :sob: :sob: </span><br><span class="line"></span><br><span class="line">别着急，甩你一个拯救苍生的快捷路径 -&gt; [转curl为python](https://curl.trillworks.com/) ，还不赶快谢主隆恩哈哈哈:sunglasses: :sunglasses: :sunglasses: </span><br><span class="line"></span><br><span class="line">这样的话，我们就可以进一步把上面的步骤一一整合成python的方式去实现啦，不过在整合之前，最好还是一步步来，体会一下这个实现的过程，收获颇多哦~~</span><br><span class="line"></span><br><span class="line">- **5.将curl命令转化为requests的样子**</span><br><span class="line"></span><br><span class="line">以下展示获取access_token的python文件，以作观赏！想要将整个流程合为一个py，这个任务就交给聪明的小伙伴们啦~</span><br></pre></td></tr></table></figure></p>
+<p>import requests</p>
+<p>def get_accesstoken():<br>    clientId = ‘clientIdxxx’<br>    clientSecret = ‘clientSecretxxx’<br>    headers = {<br>        ‘Accept’: ‘application/json’,<br>        ‘Accept-Language’: ‘en_US’,<br>    }</p>
+<pre><code>data = [(&apos;grant_type&apos;, &apos;client_credentials&apos;)]
+
+res = requests.post(&apos;https://api.sandbox.paypal.com/v1/oauth2/token&apos;,
+            headers=headers,
+            data=data,
+            auth=(clientId, clientSecret))
+
+result = res.json()
+print(result[&apos;access_token&apos;])
+</code></pre><p>if <strong>name</strong>==”<strong>main</strong>“:<br>    get_accesstoken()<br><code>`</code></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>理顺完支付的过程，清楚了支付时请求了什么东东给第三方支付平台，也清楚了第三方支付平台支付完成后回调了什么东东给服务器，这样的话，就可以开始起一个mock服务，写几个function专门来处理这些支付回调的东西，然后再去项目接口内部修改注释掉相应的支付部分，通过hosts指向自己部署的服务，模拟返回第三方支付端参数达到支付mock效果。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/环境/" rel="tag"># 环境</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/" rel="next" title="Flask-Apache-mod-wsgi-踩坑记">
+                <i class="fa fa-chevron-left"></i> Flask-Apache-mod-wsgi-踩坑记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Ningxw" />
+            
+              <p class="site-author-name" itemprop="name">Ningxw</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一部分，弄清支付的实现原理"><span class="nav-number">2.</span> <span class="nav-text">第一部分，弄清支付的实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二部分，阅读支付平台的开发文档"><span class="nav-number">3.</span> <span class="nav-text">第二部分，阅读支付平台的开发文档</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PayPal-Payments-API"><span class="nav-number">3.0.1.</span> <span class="nav-text">PayPal Payments API</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三部分，有关参数和细节"><span class="nav-number">4.</span> <span class="nav-text">第三部分，有关参数和细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ningxw</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
