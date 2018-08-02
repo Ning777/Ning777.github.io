@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="解决方法，环境," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="现在的心情是，给我一个打火机我能把整个地球烧了！！  前言上段时间自己无聊用flask框架弄了一个页面出来（也就是增删改查外加excel导入，并无技术含量！），又很无聊的搜到一篇大致意思是“骚年何不把你的项目部署到服务器上让更多人看到你装逼”的文章，心想：没错！我要做这种装逼的骚年！于是马上动手谷歌，马上开工！但万事怎么就都开头难呢，一个坑接着一个坑呢~ 不，我不死心，我要把坑填平~以下就请观赏“">
+<meta name="keywords" content="解决方法，环境">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flask-Apache-mod-wsgi-踩坑记">
+<meta property="og:url" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/index.html">
+<meta property="og:site_name" content="宁大大噢耶">
+<meta property="og:description" content="现在的心情是，给我一个打火机我能把整个地球烧了！！  前言上段时间自己无聊用flask框架弄了一个页面出来（也就是增删改查外加excel导入，并无技术含量！），又很无聊的搜到一篇大致意思是“骚年何不把你的项目部署到服务器上让更多人看到你装逼”的文章，心想：没错！我要做这种装逼的骚年！于是马上动手谷歌，马上开工！但万事怎么就都开头难呢，一个坑接着一个坑呢~ 不，我不死心，我要把坑填平~以下就请观赏“">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/1.jpg">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/2.jpg">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/3.jpg">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/4.jpg">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/5.jpg">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/6.jpg">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/7.jpg">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/8.jpg">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/9.jpg">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/10.jpg">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/11.jpg">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/12.jpg">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/13.jpg">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/14.jpg">
+<meta property="og:updated_time" content="2018-08-02T04:04:40.608Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Flask-Apache-mod-wsgi-踩坑记">
+<meta name="twitter:description" content="现在的心情是，给我一个打火机我能把整个地球烧了！！  前言上段时间自己无聊用flask框架弄了一个页面出来（也就是增删改查外加excel导入，并无技术含量！），又很无聊的搜到一篇大致意思是“骚年何不把你的项目部署到服务器上让更多人看到你装逼”的文章，心想：没错！我要做这种装逼的骚年！于是马上动手谷歌，马上开工！但万事怎么就都开头难呢，一个坑接着一个坑呢~ 不，我不死心，我要把坑填平~以下就请观赏“">
+<meta name="twitter:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/"/>
+
+
+
+
+
+  <title>Flask-Apache-mod-wsgi-踩坑记 | 宁大大噢耶</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">宁大大噢耶</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我不会写代码</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ningxw">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宁大大噢耶">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Flask-Apache-mod-wsgi-踩坑记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T11:18:28+08:00">
+                2018-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/环境搭建/" itemprop="url" rel="index">
+                    <span itemprop="name">环境搭建</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>现在的心情是，给我一个打火机我能把整个地球烧了！！ </p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上段时间自己无聊用flask框架弄了一个页面出来（也就是增删改查外加excel导入，并无技术含量！），又很无聊的搜到一篇大致意思是“骚年何不把你的项目部署到服务器上让更多人看到你装逼”的文章，心想：没错！我要做这种装逼的骚年！于是马上动手谷歌，马上开工！但万事怎么就都开头难呢，一个坑接着一个坑呢~ 不，我不死心，我要把坑填平~以下就请观赏“这个骚年是如何挖坑又填坑的”记录文~</p>
+<a id="more"></a>
+<h2 id="第一坑：安装Apache"><a href="#第一坑：安装Apache" class="headerlink" title="第一坑：安装Apache"></a>第一坑：安装Apache</h2><p>大坑！绝对的大坑！</p>
+<p>身为小喽啰，资源是有限的，所以环境的限制不能把项目部署到Linux上，只能在遍地是坑的Windows上进行部署。于是我马上去官网下载最新版的Apache，跟着网上文章的步骤一步步来，但却发现到最后怎么都无法运行项目。其实早在第一步安装Apache时就埋下了第一坑。</p>
+<p>谷歌上万遍，才知道Apache，mod_wsgi和Python都必须用相同版本的C/C++编译器生成，它们要么是32位的，要么是64位的，不能混用！:tired_face: :tired_face: :tired_face: </p>
+<h3 id="填坑第一步，查找出目前使用的python版本相对应的Visual-C-编译器"><a href="#填坑第一步，查找出目前使用的python版本相对应的Visual-C-编译器" class="headerlink" title="填坑第一步，查找出目前使用的python版本相对应的Visual C++编译器"></a>填坑第一步，查找出目前使用的python版本相对应的Visual C++编译器</h3><p><strong>1.进入python编辑器，查看MSC版本</strong></p>
+<p><img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/1.jpg" alt=""></p>
+<p>由图可得知，当前python版本是3.5.3，MSG版本是v.1900 64bit，这说明了Apache和mod_wsgi也必须是64位的。</p>
+<p><strong>2.根据MSC版本，查找出相对应的Visual C++编译器</strong><br>这里有个表格，可以快速找出对应的Visual C++编译器，如下：<br><img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/2.jpg" alt=""></p>
+<p>可以看出，MSG版本v.1900对应的编译器是Visual C++ 2015（14.0），这说明了Apache和mod_wsgi也必须是用VC14编译出来的版本。</p>
+<p><strong>3.下载缺失的Visual C++编译器</strong><br><img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/3.jpg" alt=""></p>
+<p>这部分可以自行谷歌或百度，主要是下载到vc_redist.x64.exe和vc_redist.x86.exe，然后双击安装即可。地址<a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=48145" target="_blank" rel="noopener">https://www.microsoft.com/zh-CN/download/details.aspx?id=48145</a></p>
+<h3 id="填坑第二步，下载适合的Apache"><a href="#填坑第二步，下载适合的Apache" class="headerlink" title="填坑第二步，下载适合的Apache"></a>填坑第二步，下载适合的Apache</h3><p><strong>1.下载Apache安装包</strong><br><img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/4.jpg" alt=""></p>
+<p>Apache是开源软件，在windows环境下不直接提供编译版本。我们可以在<a href="http://www.apachelounge.com/download/" target="_blank" rel="noopener">Apache Lounge</a>下载适合自己环境的版本。这里我选择的是64位的VC14版本。</p>
+<p><strong>2.解压安装包</strong><br>解压路径：C:\Apache\<br><img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/5.jpg" alt=""></p>
+<p><strong>3.修改httpd.conf文件</strong><br>打开C:\Apache\Apache24\conf目录下的httpd.conf文件并作以下修改：<br>①ServerRoot（apache目录）改为C:\Apache\Apache24<br>②ServerName （服务器名称） 去掉#，改为127.0.0.1:80<br>③DocumentRoot （修改网站根目录地址）自己设置，一般设置为C:\Apache\Apache24\htdocs<br>④Directory “网站根目录地址”，与上一步地址相同<br>⑤ScriptAlias  改为   /cgi-bin/ “Apache目录+/cgi-bin/“<br>⑥Directory “Apache目录+/cgi-bin/“ ，（与上面那个Directory 不同）</p>
+<p>PS:我由于懒，直接在根目录解压了，所以以上的修改，只做了第二步，但检查下这几个路径也是很有必要的哦~</p>
+<p><strong>4.安装Apache</strong><br>安装/卸载命令（以管理员身份运行CMD）<br>安装命令：httpd -k install -n Apache<br>卸载命令：httpd -k uninstall -n Apache</p>
+<p>PS：每次修改.conf文件，都需要先执行卸载命令，再执行安装命令哦！</p>
+<p>如果遇到下列情况：<br><img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/6.jpg" alt=""></p>
+<p>这是因为80端口已经被用了，所以你就要改端口，还是在httpd.conf文件中找到Listen 80这一行，将80改为8080就行了，然后再执行卸载命令，再执行安装命令。直到出现这样的提示：<br><img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/7.jpg" alt=""></p>
+<p><strong>5.启动Apache服务</strong><br>开始–&gt;运行–&gt;services.msc<br><img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/8.jpg" alt=""></p>
+<p>服务器列表上的“Apache”就是刚刚用安装命令命名的Apache服务，执行卸载命令后，这个服务就会被删除啦~小心操作哦~</p>
+<p>如果在系统服务开启不了Apache服务，我们可以进入Apache安装目录的bin文件下，找到ApacheMonitor.exe，用管理员身份运行，点击start。（注意：是开启Apache服务哦，不是下面那个Apache2.4）<br><img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/9.jpg" alt=""></p>
+<p><strong>6.测试看看是否成功</strong><br>在浏览器中输入<a href="http://127.0.0.1:8080/index.html，出现以下界面则成功" target="_blank" rel="noopener">http://127.0.0.1:8080/index.html，出现以下界面则成功</a><br><img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/10.jpg" alt=""></p>
+<p>到达这一步，说明我们成功填好第一坑！！:laughing: :laughing: :laughing: </p>
+<h2 id="第二坑：安装mod-wsgi"><a href="#第二坑：安装mod-wsgi" class="headerlink" title="第二坑：安装mod_wsgi"></a>第二坑：安装mod_wsgi</h2><p>巨坑！绝对的巨坑！！</p>
+<p>谷歌上亿遍，都找不到64位的且是VC14编译的mod_wsgi的so文件。网上的做法是，进入<a href="https://code.google.com/archive/p/modwsgi/downloads" target="_blank" rel="noopener">code_modwsgi</a>下载符合的mod_wsgi，但我几乎把文件都下载下来了，就是没有发现有64！位！的！so文件！！:grinning: :grinning: </p>
+<h3 id="填坑第一步，下载mod-wsgi插件，顺便挖个坑"><a href="#填坑第一步，下载mod-wsgi插件，顺便挖个坑" class="headerlink" title="填坑第一步，下载mod_wsgi插件，顺便挖个坑"></a>填坑第一步，下载mod_wsgi插件，顺便挖个坑</h3><p>我再次谷歌，发现python插件有mod_wsgi，链接是<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#mod_wsgi" target="_blank" rel="noopener">python_modwsgi</a>，终于看到非常符合我的版本了，兴冲冲下载安装了~</p>
+<p><img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/11.jpg" alt=""></p>
+<p>等等，这是whl文件啊亲，怎么不是so文件，不是so文件要怎么搞啊这套路走不下去啊！:scream: :scream: </p>
+<h3 id="填坑第二步，解决无so文件时mod-wsgi的配置问题"><a href="#填坑第二步，解决无so文件时mod-wsgi的配置问题" class="headerlink" title="填坑第二步，解决无so文件时mod_wsgi的配置问题"></a>填坑第二步，解决无so文件时mod_wsgi的配置问题</h3><p>谷歌小公举再次出手，找到了解决无so文件时mod_wsgi的配置问题~:clap: :clap: :clap: </p>
+<p><strong>1.找出可替代配置</strong><br>进入python安装目录的\scripts文件夹下，输入命令mod_wsgi-express module-config（前提是你已经安装好插件）<br><img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/12.jpg" alt=""></p>
+<p>把输出的三行结果复制下来，就是上面那串你我都看不懂的东西~</p>
+<p><strong>2.将可替代配置加入httpd.conf文件里</strong><br>网上的教程是：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">将mod_wsgi-py34-VC14.so拷贝至C:<span class="symbol">\A</span>pache24<span class="symbol">\m</span>odules<span class="symbol">\下</span>，并更名为mod_wsgi.so。</span><br><span class="line">打开 c:<span class="symbol">\A</span>pache24<span class="symbol">\c</span>onf<span class="symbol">\h</span>ttpd.conf 添加如下配置</span><br><span class="line">LoadModule wsgi_module modules/mod_wsgi.so</span><br></pre></td></tr></table></figure></p>
+<p>以上操作适合32位的小伙伴，我们64位的骚年，把可替代配置取代网上的教程，保存后，执行卸载安装命令，重新启动服务~</p>
+<p>到达这一步，又说明了我们成功填好第二坑！！:laughing: :laughing: :laughing: </p>
+<h2 id="第三坑：配置Apache站点"><a href="#第三坑：配置Apache站点" class="headerlink" title="第三坑：配置Apache站点"></a>第三坑：配置Apache站点</h2><p>我保证，这是最后一坑~:joy: :joy: </p>
+<p>很嗨心，我终于可以把项目部署上去了，抄一段网络文章，让我们慢慢走进这个坑~~</p>
+<h3 id="挖坑第一步，创建Web-App"><a href="#挖坑第一步，创建Web-App" class="headerlink" title="挖坑第一步，创建Web App"></a>挖坑第一步，创建Web App</h3><p><strong>1.创建test.py（路径：C:\Test_Web\test.py）</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"啦啦啦啦"</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/hello')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello_world</span><span class="params">()</span>:</span></span><br><span class="line">    name = request.args.get(<span class="string">'name'</span>, <span class="string">''</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Hello '</span> + name + <span class="string">'!'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    app.run(host=<span class="string">'127.0.0.1'</span>)</span><br></pre></td></tr></table></figure></p>
+<p><strong>2.创建test.wsgi（路径：C:\Test_Web\test.wsgi）</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="comment">#Expand Python classes path with your app's path </span></span><br><span class="line">sys.path.insert(<span class="number">0</span>, <span class="string">"c:/Test_Web"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> test <span class="keyword">import</span> app</span><br><span class="line"></span><br><span class="line"><span class="comment">#Put logging code (and imports) here ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#Initialize WSGI app object</span></span><br><span class="line">application = app</span><br></pre></td></tr></table></figure></p>
+<h3 id="挖坑第二步，在Apache中配置站点"><a href="#挖坑第二步，在Apache中配置站点" class="headerlink" title="挖坑第二步，在Apache中配置站点"></a>挖坑第二步，在Apache中配置站点</h3><p>将以下代码加入到C:\Apache\Apache24\conf\httpd.conf文件中。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:<span class="number">80</span> &gt;  </span><br><span class="line">ServerAdmin example@company.com  </span><br><span class="line">DocumentRoot c:\Test_Web   </span><br><span class="line">&lt;Directory <span class="string">"c:\Test_Web"</span>&gt;  </span><br><span class="line">Order allow,deny  </span><br><span class="line">Allow <span class="keyword">from</span> all   </span><br><span class="line">&lt;/Directory&gt;  </span><br><span class="line">WSGIScriptAlias /flasktest c:\Test_Web\test.wsgi  </span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="挖坑第三步，测试站点运行"><a href="#挖坑第三步，测试站点运行" class="headerlink" title="挖坑第三步，测试站点运行"></a>挖坑第三步，测试站点运行</h3><p>Now，open你的浏览器，输入 “<a href="http://localhost/flasktest/hello?name=萨瓦迪卡”" target="_blank" rel="noopener">http://localhost/flasktest/hello?name=萨瓦迪卡”</a></p>
+<p>如果你看见网页上出现 “Hello 萨瓦迪卡”! 说明你的站点运行起来了。</p>
+<p><img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/13.jpg" alt=""></p>
+<p>什么鬼，我的萨瓦迪卡呢~~:cold_sweat:  自己挖的坑，自己填！</p>
+<h3 id="填坑最后一步，解决Apache下403-Forbidden错误"><a href="#填坑最后一步，解决Apache下403-Forbidden错误" class="headerlink" title="填坑最后一步，解决Apache下403 Forbidden错误"></a>填坑最后一步，解决Apache下403 Forbidden错误</h3><p>这世界上最烂的错误就是“你没有权限！”这点很好解决，copy错误上谷歌，一分钟帮你搞定~</p>
+<p>可是，我花了一个小时，都没搞定:flushed: 原因在于，很多答案告诉我，是Directory节点下那句“Order allow,deny Allow from all ” 写得不对，你应该要改成啪啦啪啦这样那样~结果，还是不行啊要我的命吗，啊？</p>
+<p>不急，谷歌小公举并非浪得虚名，在我不放弃的精神下，终于找到正确答案！！在这里要给那些高分答案打下脸才行害得我这个小菜鸟浪费这么多时间！:triumph: :triumph: :triumph: </p>
+<p>我们在httpd.conf文件中找到：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /&gt;</span><br><span class="line">    AllowOverride none   <span class="comment">#注释掉</span></span><br><span class="line">    Require all denied   <span class="comment">#注释掉</span></span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后将节点中的两行代码用“#”注释掉，再重启服务，最后打开浏览器，输入<a href="http://localhost/flasktest/hello?name=萨瓦迪卡，你将见到属于你的萨瓦迪卡" target="_blank" rel="noopener">http://localhost/flasktest/hello?name=萨瓦迪卡，你将见到属于你的萨瓦迪卡</a>~</p>
+<p><img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/14.jpg" alt=""></p>
+<p>恭喜！填坑完毕！终于可以开始打酱油了！！:sob: :sob: :sob: :clap: :clap: :clap: :ok_woman: :ok_woman: :ok_woman: </p>
+<h2 id="踩坑记感想"><a href="#踩坑记感想" class="headerlink" title="踩坑记感想"></a>踩坑记感想</h2><p>嗯，怎么说呢，每次接触一个新东西，我好像都会手忙脚乱。在这个踩坑过程中，我也有去一些python讨论群问解决方法，但得到的回应大多都是“用Django不就好了，压根不需要配置这些东西~”，又或者“这年头谁还玩Apache啊，用Nginx、ubuntu呀！”，甚至还有人跟我说“不用烦恼了，弃坑吧！”，虽然大家都说得没错，这些方式可能真的会让我走得轻松一些，但是嘛，人总是要有点踩坑精神，不在坑里打几个滚，又怎么能知道自己的能力如何呢？（自我安慰ing…）哈哈这里并不是说我能力很好，相反的，我还需要非常努力，因为现在很多的解决手段基本都是靠谷歌、百度，很少能从自己的知识体系中找到解决方法。大家要多多指教我哈，一起努力前行，希望有一天能摆脱谷歌小公举的称号~:stuck_out_tongue_closed_eyes: :stuck_out_tongue_closed_eyes: :stuck_out_tongue_closed_eyes: </p>
+<p>文章参考系列（如有雷同，纯属巧合）：<br><a href="http://blog.csdn.net/firefox1/article/details/46438769" target="_blank" rel="noopener">http://blog.csdn.net/firefox1/article/details/46438769</a><br><a href="http://www.debugrun.com/a/niftKI9.html" target="_blank" rel="noopener">http://www.debugrun.com/a/niftKI9.html</a><br><a href="http://blog.csdn.net/chao_8023/article/details/74012324" target="_blank" rel="noopener">http://blog.csdn.net/chao_8023/article/details/74012324</a></p>
+<p>希望这篇文章能帮助到小伙伴们，有不对的地方，还请不吝赐教~:grin: :grin: :grin: </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/解决方法，环境/" rel="tag"># 解决方法，环境</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/02/Flask-Apache-mod-wsgi-踩踩坑记/" rel="next" title="Flask + Apache + mod_wsgi 踩坑记">
+                <i class="fa fa-chevron-left"></i> Flask + Apache + mod_wsgi 踩坑记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Ningxw" />
+            
+              <p class="site-author-name" itemprop="name">Ningxw</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一坑：安装Apache"><span class="nav-number">2.</span> <span class="nav-text">第一坑：安装Apache</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#填坑第一步，查找出目前使用的python版本相对应的Visual-C-编译器"><span class="nav-number">2.1.</span> <span class="nav-text">填坑第一步，查找出目前使用的python版本相对应的Visual C++编译器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#填坑第二步，下载适合的Apache"><span class="nav-number">2.2.</span> <span class="nav-text">填坑第二步，下载适合的Apache</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二坑：安装mod-wsgi"><span class="nav-number">3.</span> <span class="nav-text">第二坑：安装mod_wsgi</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#填坑第一步，下载mod-wsgi插件，顺便挖个坑"><span class="nav-number">3.1.</span> <span class="nav-text">填坑第一步，下载mod_wsgi插件，顺便挖个坑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#填坑第二步，解决无so文件时mod-wsgi的配置问题"><span class="nav-number">3.2.</span> <span class="nav-text">填坑第二步，解决无so文件时mod_wsgi的配置问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三坑：配置Apache站点"><span class="nav-number">4.</span> <span class="nav-text">第三坑：配置Apache站点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#挖坑第一步，创建Web-App"><span class="nav-number">4.1.</span> <span class="nav-text">挖坑第一步，创建Web App</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挖坑第二步，在Apache中配置站点"><span class="nav-number">4.2.</span> <span class="nav-text">挖坑第二步，在Apache中配置站点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挖坑第三步，测试站点运行"><span class="nav-number">4.3.</span> <span class="nav-text">挖坑第三步，测试站点运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#填坑最后一步，解决Apache下403-Forbidden错误"><span class="nav-number">4.4.</span> <span class="nav-text">填坑最后一步，解决Apache下403 Forbidden错误</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#踩坑记感想"><span class="nav-number">5.</span> <span class="nav-text">踩坑记感想</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ningxw</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
