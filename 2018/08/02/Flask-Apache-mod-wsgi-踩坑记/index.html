@@ -87,6 +87,7 @@
 <meta property="og:site_name" content="宁大大噢耶">
 <meta property="og:description" content="现在的心情是，给我一个打火机我能把整个地球烧了！！  前言上段时间自己无聊用flask框架弄了一个页面出来（也就是增删改查外加excel导入，并无技术含量！），又很无聊的搜到一篇大致意思是“骚年何不把你的项目部署到服务器上让更多人看到你装逼”的文章，心想：没错！我要做这种装逼的骚年！于是马上动手谷歌，马上开工！但万事怎么就都开头难呢，一个坑接着一个坑呢~ 不，我不死心，我要把坑填平~以下就请观赏“">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/1.png">
 <meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/1.png">
 <meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/2.png">
 <meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/3.png">
@@ -101,11 +102,11 @@
 <meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/12.png">
 <meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/13.png">
 <meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/14.png">
-<meta property="og:updated_time" content="2018-08-02T04:17:17.691Z">
+<meta property="og:updated_time" content="2018-08-02T04:26:07.616Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flask-Apache-mod-wsgi-踩坑记">
 <meta name="twitter:description" content="现在的心情是，给我一个打火机我能把整个地球烧了！！  前言上段时间自己无聊用flask框架弄了一个页面出来（也就是增删改查外加excel导入，并无技术含量！），又很无聊的搜到一篇大致意思是“骚年何不把你的项目部署到服务器上让更多人看到你装逼”的文章，心想：没错！我要做这种装逼的骚年！于是马上动手谷歌，马上开工！但万事怎么就都开头难呢，一个坑接着一个坑呢~ 不，我不死心，我要把坑填平~以下就请观赏“">
-<meta name="twitter:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/1.png">
+<meta name="twitter:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/1.png">
 
 
 
@@ -364,6 +365,7 @@
 <p>身为小喽啰，资源是有限的，所以环境的限制不能把项目部署到Linux上，只能在遍地是坑的Windows上进行部署。于是我马上去官网下载最新版的Apache，跟着网上文章的步骤一步步来，但却发现到最后怎么都无法运行项目。其实早在第一步安装Apache时就埋下了第一坑。</p>
 <p>谷歌上万遍，才知道Apache，mod_wsgi和Python都必须用相同版本的C/C++编译器生成，它们要么是32位的，要么是64位的，不能混用！:tired_face: :tired_face: :tired_face: </p>
 <h3 id="填坑第一步，查找出目前使用的python版本相对应的Visual-C-编译器"><a href="#填坑第一步，查找出目前使用的python版本相对应的Visual-C-编译器" class="headerlink" title="填坑第一步，查找出目前使用的python版本相对应的Visual C++编译器"></a>填坑第一步，查找出目前使用的python版本相对应的Visual C++编译器</h3><p><strong>1.进入python编辑器，查看MSC版本</strong></p>
+<img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/1.png">
 <p><img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/1.png" alt=""></p>
 <p>由图可得知，当前python版本是3.5.3，MSG版本是v.1900 64bit，这说明了Apache和mod_wsgi也必须是64位的。</p>
 <p><strong>2.根据MSC版本，查找出相对应的Visual C++编译器</strong><br>这里有个表格，可以快速找出对应的Visual C++编译器，如下：<br><img src="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/2.png" alt=""></p>
