@@ -88,7 +88,9 @@
 <meta property="og:description" content="前言此系列作为我学习支付过程的记录文，第一次接触支付，最终目的是实现模拟第三方支付平台Mock。有啥不对的欢迎各路英雄好汉指正哈~~~">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ning777.github.io/2018/08/02/PayPal支付原理/1.png">
-<meta property="og:updated_time" content="2018-08-02T11:35:08.311Z">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/PayPal支付原理/2.png">
+<meta property="og:image" content="https://ning777.github.io/2018/08/02/PayPal支付原理/3.png">
+<meta property="og:updated_time" content="2018-08-02T11:43:19.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PayPal支付原理">
 <meta name="twitter:description" content="前言此系列作为我学习支付过程的记录文，第一次接触支付，最终目的是实现模拟第三方支付平台Mock。有啥不对的欢迎各路英雄好汉指正哈~~~">
@@ -369,19 +371,25 @@
 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -v https://api.sandbox.paypal.com/v1/oauth2/token \   </span><br><span class="line">   -H &quot;Accept: application/json&quot; \</span><br><span class="line">   -H &quot;Accept-Language: en_US&quot; \</span><br><span class="line">   -u &quot;&lt;client_id&gt;:&lt;secret&gt;&quot; \</span><br><span class="line">   -d &quot;grant_type=client_credentials&quot;</span><br></pre></td></tr></table></figure>
-<p>  PayPal后台关键参数入口在<figure class="highlight plain"><figcaption><span>Apps & Credentials -> REST Api apps -> 你的项目```，点进去之后就可以看到了，具体的页面我就不展示啦，我害怕泄露天机然后被老板炒鱿鱼！:joy: :joy: </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![](PayPal支付原理/2.png)</span><br><span class="line"></span><br><span class="line">- **2.关于payer_id的获取**</span><br><span class="line">  payer_id的获取需要从Create请求的返回结果approval_url中请求得到，需要在PayPal确认支付后才会返回给页面，直接一点的方法是在浏览器中输入approval_url，使用抓包工具截取返回结果，从而获取到payer_id，如图所示：</span><br><span class="line"></span><br><span class="line">![](PayPal支付原理/3.png)</span><br><span class="line"></span><br><span class="line">- **3.关于curl命令的运行工具**</span><br><span class="line">  墙裂推荐使用[Babun](http://babun.github.io/),一个 Windows 上的开箱即用的壳程序，安装 Babun 十分简单，解压缩包之后，执行里面的 install.bat 批处理脚本，然后静静等待执行结束即可，过程有些长，但一定要等待执行结束哦，安装结束后 Babun 会自动运行，且在桌面上生成快捷方式，谁用谁知道哈~~:sunglasses: :sunglasses: :sunglasses: </span><br><span class="line"></span><br><span class="line">- **4.使用python运行curl命令**</span><br><span class="line">  是不是很头疼啊现在，不知道怎么转化，谷歌来谷歌去的，一会使用pycurl，一会想将curl命令转化为requests方式，就是找不到最佳的实现方式，就是找不到一种简单粗暴又无脑的方式去转化呢？！！！:sob: :sob: :sob: </span><br><span class="line"></span><br><span class="line">别着急，甩你一个拯救苍生的快捷路径 -&gt; [转curl为python](https://curl.trillworks.com/) ，还不赶快谢主隆恩哈哈哈:sunglasses: :sunglasses: :sunglasses: </span><br><span class="line"></span><br><span class="line">这样的话，我们就可以进一步把上面的步骤一一整合成python的方式去实现啦，不过在整合之前，最好还是一步步来，体会一下这个实现的过程，收获颇多哦~~</span><br><span class="line"></span><br><span class="line">- **5.将curl命令转化为requests的样子**</span><br><span class="line"></span><br><span class="line">以下展示获取access_token的python文件，以作观赏！想要将整个流程合为一个py，这个任务就交给聪明的小伙伴们啦~</span><br></pre></td></tr></table></figure></p>
-<p>import requests</p>
-<p>def get_accesstoken():<br>    clientId = ‘clientIdxxx’<br>    clientSecret = ‘clientSecretxxx’<br>    headers = {<br>        ‘Accept’: ‘application/json’,<br>        ‘Accept-Language’: ‘en_US’,<br>    }</p>
-<pre><code>data = [(&apos;grant_type&apos;, &apos;client_credentials&apos;)]
-
-res = requests.post(&apos;https://api.sandbox.paypal.com/v1/oauth2/token&apos;,
-            headers=headers,
-            data=data,
-            auth=(clientId, clientSecret))
-
-result = res.json()
-print(result[&apos;access_token&apos;])
-</code></pre><p>if <strong>name</strong>==”<strong>main</strong>“:<br>    get_accesstoken()<br><code>`</code></p>
+<p>  PayPal后台关键参数入口在<strong>My Apps &amp; Credentials -&gt; REST Api apps -&gt; 你的项目</strong>，点进去之后就可以看到了，具体的页面我就不展示啦，我害怕泄露天机然后被老板炒鱿鱼！:joy: :joy: </p>
+<p><img src="/2018/08/02/PayPal支付原理/2.png" alt=""></p>
+<ul>
+<li><strong>2.关于payer_id的获取</strong><br>payer_id的获取需要从Create请求的返回结果approval_url中请求得到，需要在PayPal确认支付后才会返回给页面，直接一点的方法是在浏览器中输入approval_url，使用抓包工具截取返回结果，从而获取到payer_id，如图所示：</li>
+</ul>
+<p><img src="/2018/08/02/PayPal支付原理/3.png" alt=""></p>
+<ul>
+<li><p><strong>3.关于curl命令的运行工具</strong><br>墙裂推荐使用<a href="http://babun.github.io/" target="_blank" rel="noopener">Babun</a>,一个 Windows 上的开箱即用的壳程序，安装 Babun 十分简单，解压缩包之后，执行里面的 install.bat 批处理脚本，然后静静等待执行结束即可，过程有些长，但一定要等待执行结束哦，安装结束后 Babun 会自动运行，且在桌面上生成快捷方式，谁用谁知道哈~~:sunglasses: :sunglasses: :sunglasses: </p>
+</li>
+<li><p><strong>4.使用python运行curl命令</strong><br>是不是很头疼啊现在，不知道怎么转化，谷歌来谷歌去的，一会使用pycurl，一会想将curl命令转化为requests方式，就是找不到最佳的实现方式，就是找不到一种简单粗暴又无脑的方式去转化呢？！！！:sob: :sob: :sob: </p>
+</li>
+</ul>
+<p>别着急，甩你一个拯救苍生的快捷路径 -&gt; <a href="https://curl.trillworks.com/" target="_blank" rel="noopener">转curl为python</a> ，还不赶快谢主隆恩哈哈哈:sunglasses: :sunglasses: :sunglasses: </p>
+<p>这样的话，我们就可以进一步把上面的步骤一一整合成python的方式去实现啦，不过在整合之前，最好还是一步步来，体会一下这个实现的过程，收获颇多哦~~</p>
+<ul>
+<li><strong>5.将curl命令转化为requests的样子</strong></li>
+</ul>
+<p>以下展示获取access_token的python文件，以作观赏！想要将整个流程合为一个py，这个任务就交给聪明的小伙伴们啦~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">def get_accesstoken():</span><br><span class="line">    clientId = &apos;clientIdxxx&apos;</span><br><span class="line">    clientSecret = &apos;clientSecretxxx&apos;</span><br><span class="line">    headers = &#123;</span><br><span class="line">        &apos;Accept&apos;: &apos;application/json&apos;,</span><br><span class="line">        &apos;Accept-Language&apos;: &apos;en_US&apos;,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    data = [(&apos;grant_type&apos;, &apos;client_credentials&apos;)]</span><br><span class="line"></span><br><span class="line">    res = requests.post(&apos;https://api.sandbox.paypal.com/v1/oauth2/token&apos;,</span><br><span class="line">                headers=headers,</span><br><span class="line">                data=data,</span><br><span class="line">                auth=(clientId, clientSecret))</span><br><span class="line"></span><br><span class="line">    result = res.json()</span><br><span class="line">    print(result[&apos;access_token&apos;])</span><br><span class="line"></span><br><span class="line">if __name__==&quot;__main__&quot;:</span><br><span class="line">    get_accesstoken()</span><br></pre></td></tr></table></figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>理顺完支付的过程，清楚了支付时请求了什么东东给第三方支付平台，也清楚了第三方支付平台支付完成后回调了什么东东给服务器，这样的话，就可以开始起一个mock服务，写几个function专门来处理这些支付回调的东西，然后再去项目接口内部修改注释掉相应的支付部分，通过hosts指向自己部署的服务，模拟返回第三方支付端参数达到支付mock效果。</p>
 
       
