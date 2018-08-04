@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="环境,解决方法," />
+  <meta name="keywords" content="解决方法,环境," />
 
 
 
@@ -90,7 +90,7 @@
 
 
 <meta name="description" content="现在的心情是，给我一个打火机我能把整个地球烧了！！  前言上段时间自己无聊用flask框架弄了一个页面出来（也就是增删改查外加excel导入，并无技术含量！），又很无聊的搜到一篇大致意思是“骚年何不把你的项目部署到服务器上让更多人看到你装逼”的文章，心想：没错！我要做这种装逼的骚年！于是马上动手谷歌，马上开工！但万事怎么就都开头难呢，一个坑接着一个坑呢~ 不，我不死心，我要把坑填平~以下就请观赏“">
-<meta name="keywords" content="环境,解决方法">
+<meta name="keywords" content="解决方法,环境">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flask-Apache-mod-wsgi-踩坑记">
 <meta property="og:url" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/index.html">
@@ -186,7 +186,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">一个测试渣渣最后的挣扎~有问题请在页面右下方私聊我哟~:)</p>
+        <p class="site-subtitle">一个测试渣渣最后的挣扎~:)</p>
       
   </div>
 
@@ -357,6 +357,17 @@
 
           
           
+             <span id="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/" class="leancloud_visitors" data-flag-title="Flask-Apache-mod-wsgi-踩坑记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -451,9 +462,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/环境/" rel="tag"># 环境</a>
-          
             <a href="/tags/解决方法/" rel="tag"># 解决方法</a>
+          
+            <a href="/tags/环境/" rel="tag"># 环境</a>
           
         </div>
       
@@ -814,7 +825,7 @@
   
   <script type="text/javascript">
     var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
+    var guest = '';
     guest = guest.split(',').filter(item=>{
       return GUEST.indexOf(item)>-1;
     });
@@ -824,7 +835,7 @@
         notify: false,
         appId: 'WC7T2lOHKOiT38n2BRMqQ4YD-gzGzoHsz',
         appKey: 'do5cmS6Kl4OrS8J4Jd1SBu0p',
-        placeholder: 'Just go go',
+        placeholder: 'ヾﾉ≧∀≦)o 留个言吧~',
         avatar:'/images/avatar.jpg',
         guest_info:guest,
         pageSize:'10' || 10,
@@ -840,6 +851,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("WC7T2lOHKOiT38n2BRMqQ4YD-gzGzoHsz", "do5cmS6Kl4OrS8J4Jd1SBu0p");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
