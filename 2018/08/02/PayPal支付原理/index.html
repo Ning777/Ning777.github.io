@@ -175,7 +175,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">我不会写代码</p>
+        <p class="site-subtitle">一个测试渣渣最后的挣扎~有问题请在页面右下方私聊我哟~:)</p>
       
   </div>
 
@@ -332,6 +332,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/02/PayPal支付原理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/02/PayPal支付原理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -468,6 +478,9 @@
 
           
 
+  
+    <div class="comments" id="comments">
+    </div>
   
 
 
@@ -766,6 +779,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'WC7T2lOHKOiT38n2BRMqQ4YD-gzGzoHsz',
+        appKey: 'do5cmS6Kl4OrS8J4Jd1SBu0p',
+        placeholder: 'Just go go',
+        avatar:'/images/avatar.jpg',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 

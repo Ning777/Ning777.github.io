@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="解决方法,环境," />
+  <meta name="keywords" content="环境,解决方法," />
 
 
 
@@ -90,7 +90,7 @@
 
 
 <meta name="description" content="现在的心情是，给我一个打火机我能把整个地球烧了！！  前言上段时间自己无聊用flask框架弄了一个页面出来（也就是增删改查外加excel导入，并无技术含量！），又很无聊的搜到一篇大致意思是“骚年何不把你的项目部署到服务器上让更多人看到你装逼”的文章，心想：没错！我要做这种装逼的骚年！于是马上动手谷歌，马上开工！但万事怎么就都开头难呢，一个坑接着一个坑呢~ 不，我不死心，我要把坑填平~以下就请观赏“">
-<meta name="keywords" content="解决方法,环境">
+<meta name="keywords" content="环境,解决方法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flask-Apache-mod-wsgi-踩坑记">
 <meta property="og:url" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/index.html">
@@ -186,7 +186,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">我不会写代码</p>
+        <p class="site-subtitle">一个测试渣渣最后的挣扎~有问题请在页面右下方私聊我哟~:)</p>
       
   </div>
 
@@ -343,6 +343,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -441,9 +451,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/解决方法/" rel="tag"># 解决方法</a>
-          
             <a href="/tags/环境/" rel="tag"># 环境</a>
+          
+            <a href="/tags/解决方法/" rel="tag"># 解决方法</a>
           
         </div>
       
@@ -497,6 +507,9 @@
 
           
 
+  
+    <div class="comments" id="comments">
+    </div>
   
 
 
@@ -795,6 +808,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'WC7T2lOHKOiT38n2BRMqQ4YD-gzGzoHsz',
+        appKey: 'do5cmS6Kl4OrS8J4Jd1SBu0p',
+        placeholder: 'Just go go',
+        avatar:'/images/avatar.jpg',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
