@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="测试,接口测试,宁大大噢耶,博客,hexo" />
+  <meta name="keywords" content="python,代码," />
 
 
 
@@ -89,13 +89,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="宁大大噢耶">
-<meta property="og:url" content="https://ning777.github.io/index.html">
+<meta name="description" content="前言学了这么久的python，除了掌握if，else外是不是感觉啥都不会？不急，本系列来教大家如何在代码上装逼，let us see 一下Python装饰器，这是一个非常好用的特性，运用装饰器会让代码看起来更加优雅，运行效率也将大大提升。 装饰器入门 概念：python装饰器就是用于拓展原来函数功能的一种函数，是可调用的对象，可以像常规的可调用对象那样调用，这个函数的特殊之处在于它的参数是一个函数">
+<meta name="keywords" content="python,代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="装逼必备之python装饰器">
+<meta property="og:url" content="https://ning777.github.io/2018/08/06/装逼必备之python装饰器/index.html">
 <meta property="og:site_name" content="宁大大噢耶">
+<meta property="og:description" content="前言学了这么久的python，除了掌握if，else外是不是感觉啥都不会？不急，本系列来教大家如何在代码上装逼，let us see 一下Python装饰器，这是一个非常好用的特性，运用装饰器会让代码看起来更加优雅，运行效率也将大大提升。 装饰器入门 概念：python装饰器就是用于拓展原来函数功能的一种函数，是可调用的对象，可以像常规的可调用对象那样调用，这个函数的特殊之处在于它的参数是一个函数">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-06T10:01:16.922Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="宁大大噢耶">
+<meta name="twitter:title" content="装逼必备之python装饰器">
+<meta name="twitter:description" content="前言学了这么久的python，除了掌握if，else外是不是感觉啥都不会？不急，本系列来教大家如何在代码上装逼，let us see 一下Python装饰器，这是一个非常好用的特性，运用装饰器会让代码看起来更加优雅，运行效率也将大大提升。 装饰器入门 概念：python装饰器就是用于拓展原来函数功能的一种函数，是可调用的对象，可以像常规的可调用对象那样调用，这个函数的特殊之处在于它的参数是一个函数">
 
 
 
@@ -125,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="https://ning777.github.io/"/>
+  <link rel="canonical" href="https://ning777.github.io/2018/08/06/装逼必备之python装饰器/"/>
 
 
 
 
 
-  <title>宁大大噢耶</title>
+  <title>装逼必备之python装饰器 | 宁大大噢耶</title>
   
 
 
@@ -150,8 +155,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,9 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -276,9 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/06/装逼必备之python装饰器/" itemprop="url">装逼必备之python装饰器</a></h1>
+          <h1 class="post-title" itemprop="name headline">装逼必备之python装饰器</h1>
         
 
         <div class="post-meta">
@@ -371,9 +373,7 @@
       
 
       
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>学了这么久的python，除了掌握if，else外是不是感觉啥都不会？不急，本系列来教大家如何在代码上装逼，let us see 一下Python装饰器，这是一个非常好用的特性，运用装饰器会让代码看起来更加优雅，运行效率也将大大提升。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>学了这么久的python，除了掌握if，else外是不是感觉啥都不会？不急，本系列来教大家如何在代码上装逼，let us see 一下Python装饰器，这是一个非常好用的特性，运用装饰器会让代码看起来更加优雅，运行效率也将大大提升。</p>
 <h2 id="装饰器入门"><a href="#装饰器入门" class="headerlink" title="装饰器入门"></a>装饰器入门</h2><blockquote>
 <p>概念：python装饰器就是用于拓展原来函数功能的一种函数，是可调用的对象，可以像常规的可调用对象那样调用，这个函数的特殊之处在于它的参数是一个函数，返回值也是一个函数，使用装饰器的好处就是在不用更改原函数的代码前提下给函数增加新的功能。</p>
 </blockquote>
@@ -429,8 +429,6 @@
 <p>输出结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">deco2</span><br><span class="line">deco1</span><br><span class="line">first start</span><br><span class="line">second start</span><br><span class="line">ding....</span><br><span class="line">second end</span><br><span class="line">first end</span><br></pre></td></tr></table></figure></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>装饰器的本质是函数，其参数是另一个函数（被装饰的函数）。装饰器通常会额外处理被装饰的函数，然后把它返回，或者将其替换成另一个函数或可调用对象。行为良好的装饰器可以重用，以减少代码量。</p>
 
-          
-        
       
     </div>
     
@@ -445,349 +443,38 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ning777.github.io/2018/08/02/PayPal支付原理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ningxw">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="宁大大噢耶">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/02/PayPal支付原理/" itemprop="url">PayPal支付原理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T19:22:53+08:00">
-                2018-08-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/环境搭建/" itemprop="url" rel="index">
-                    <span itemprop="name">环境搭建</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/python/" rel="tag"># python</a>
           
-
+            <a href="/tags/代码/" rel="tag"># 代码</a>
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/02/PayPal支付原理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/02/PayPal支付原理/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/08/02/PayPal支付原理/" class="leancloud_visitors" data-flag-title="PayPal支付原理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>此系列作为我学习支付过程的记录文，第一次接触支付，最终目的是实现模拟第三方支付平台Mock。有啥不对的欢迎各路英雄好汉指正哈~~~</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/02/PayPal支付原理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/02/PayPal支付原理/" rel="next" title="PayPal支付原理">
+                <i class="fa fa-chevron-left"></i> PayPal支付原理
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ningxw">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="宁大大噢耶">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/" itemprop="url">Flask-Apache-mod-wsgi-踩坑记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T11:18:28+08:00">
-                2018-08-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/环境搭建/" itemprop="url" rel="index">
-                    <span itemprop="name">环境搭建</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/" class="leancloud_visitors" data-flag-title="Flask-Apache-mod-wsgi-踩坑记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>现在的心情是，给我一个打火机我能把整个地球烧了！！ </p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上段时间自己无聊用flask框架弄了一个页面出来（也就是增删改查外加excel导入，并无技术含量！），又很无聊的搜到一篇大致意思是“骚年何不把你的项目部署到服务器上让更多人看到你装逼”的文章，心想：没错！我要做这种装逼的骚年！于是马上动手谷歌，马上开工！但万事怎么就都开头难呢，一个坑接着一个坑呢~ 不，我不死心，我要把坑填平~以下就请观赏“这个骚年是如何挖坑又填坑的”记录文~</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -797,185 +484,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ning777.github.io/2017/03/23/关于接口自动化的那些事-基于-Python/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ningxw">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="宁大大噢耶">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/23/关于接口自动化的那些事-基于-Python/" itemprop="url">关于接口自动化的那些事 - 基于 Python</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-23T18:37:30+08:00">
-                2017-03-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/测试技术/" itemprop="url" rel="index">
-                    <span itemprop="name">测试技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/23/关于接口自动化的那些事-基于-Python/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/03/23/关于接口自动化的那些事-基于-Python/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/03/23/关于接口自动化的那些事-基于-Python/" class="leancloud_visitors" data-flag-title="关于接口自动化的那些事 - 基于 Python">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>原创首发：</p>
-<ul>
-<li><a href="https://testerhome.com/topics/8091" target="_blank" rel="noopener">关于接口自动化的那些事 - 基于 Python</a></li>
-</ul>
-<p>精彩文章：</p>
-<ul>
-<li><a href="https://testerhome.com/topics/9284" target="_blank" rel="noopener">接口自动化测试的最佳工程实践 (ApiTestEngine)</a></li>
-<li><a href="https://testerhome.com/topics/5631" target="_blank" rel="noopener">Http 接口测试框架</a></li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/23/关于接口自动化的那些事-基于-Python/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -983,6 +496,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -1003,8 +523,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1068,6 +597,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰器入门"><span class="nav-number">2.</span> <span class="nav-text">装饰器入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#装饰器简单的例子"><span class="nav-number">2.1.</span> <span class="nav-text">装饰器简单的例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析装饰器例子"><span class="nav-number">2.2.</span> <span class="nav-text">分析装饰器例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#装饰器理解基础"><span class="nav-number">2.3.</span> <span class="nav-text">装饰器理解基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数名可以赋值给变量"><span class="nav-number">2.3.1.</span> <span class="nav-text">函数名可以赋值给变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高阶函数"><span class="nav-number">2.3.2.</span> <span class="nav-text">高阶函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现一个类似的装饰器"><span class="nav-number">2.3.3.</span> <span class="nav-text">实现一个类似的装饰器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优化装饰器"><span class="nav-number">2.3.4.</span> <span class="nav-text">优化装饰器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#装饰器的执行先后顺序"><span class="nav-number">2.3.5.</span> <span class="nav-text">装饰器的执行先后顺序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1211,6 +756,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
