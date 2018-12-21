@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "391fe96b"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="基础," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言记录工作中最常用到的Linux命令和常用的组合用法。欢迎大家来补充哦~！（ps:本文不是一篇Linux命令大全哟，只是按自己的工作内容来列举一些常用的命令而已！高手点完赞就可以绕道啦！）">
+<meta name="keywords" content="基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工作中实用的Linux命令">
+<meta property="og:url" content="https://ning777.github.io/2018/12/21/工作中实用的Linux命令/index.html">
+<meta property="og:site_name" content="宁大大噢耶">
+<meta property="og:description" content="前言记录工作中最常用到的Linux命令和常用的组合用法。欢迎大家来补充哦~！（ps:本文不是一篇Linux命令大全哟，只是按自己的工作内容来列举一些常用的命令而已！高手点完赞就可以绕道啦！）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-21T09:48:58.655Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="工作中实用的Linux命令">
+<meta name="twitter:description" content="前言记录工作中最常用到的Linux命令和常用的组合用法。欢迎大家来补充哦~！（ps:本文不是一篇Linux命令大全哟，只是按自己的工作内容来列举一些常用的命令而已！高手点完赞就可以绕道啦！）">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ning777.github.io/2018/12/21/工作中实用的Linux命令/"/>
+
+
+
+
+
+  <title>工作中实用的Linux命令 | 宁大大噢耶</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">宁大大噢耶</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个测试渣渣最后的挣扎~:)</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ning777.github.io/2018/12/21/工作中实用的Linux命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ningxw">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宁大大噢耶">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">工作中实用的Linux命令</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-21T17:48:32+08:00">
+                2018-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/基础知识/" itemprop="url" rel="index">
+                    <span itemprop="name">基础知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/21/工作中实用的Linux命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/21/工作中实用的Linux命令/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/12/21/工作中实用的Linux命令/" class="leancloud_visitors" data-flag-title="工作中实用的Linux命令">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>记录工作中最常用到的Linux命令和常用的组合用法。欢迎大家来补充哦~！（ps:本文不是一篇Linux命令大全哟，只是按自己的工作内容来列举一些常用的命令而已！高手点完赞就可以绕道啦！）</p>
+<a id="more"></a>
+<h2 id="文件系统管理类"><a href="#文件系统管理类" class="headerlink" title="文件系统管理类"></a>文件系统管理类</h2><h3 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ls [选项] [路径或文件]</td>
+<td>显示指定工作目录下的内容，列出工作目录所含的文件及子目录</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<p>1）<strong>ls</strong> ：列出文件和目录</p>
+<p>2）<strong>ls -l</strong> ：列出文件列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ ls -l</span><br><span class="line">total 16</span><br><span class="line">drwxr-xr-x  2 root  root  4096 Apr  9 09:01 root_file</span><br><span class="line">-rw-r--r--. 1 root  root     4 Mar 22 17:58 tmp</span><br><span class="line">drwx------. 2 cloud cloud 4096 Feb 16  2015 logs</span><br><span class="line">drwxr-xr-x. 3 root  root  4096 Feb 24 21:32 tomcat-it</span><br></pre></td></tr></table></figure>
+<p>total表示当前目录下所有文件所占的空间总和，单位是kb，列表分别代表的意思是文件属性，子目录个数，文件拥有者，拥有者所在组，文件占用空间，最近修改时间，文件名。</p>
+<p>3） <strong>ls -ld /tmp</strong> ：表示只列出/tmp目录的信息。</p>
+<p>4） <strong>ls -lS</strong> ：能按文件从大到小的次序显示。</p>
+<p>5） <strong>ls -l  |grep “^d”|wc -l</strong>  ：计算当前目录下的文件数”^-“ 和目录数”^d”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ ls -l  |grep &quot;^d&quot;|wc -l</span><br><span class="line">40</span><br><span class="line">-bash-4.1$ ls -l  |grep &quot;^-&quot;|wc -l</span><br><span class="line">10</span><br></pre></td></tr></table></figure></p>
+<p>6）<strong>ls -a</strong> ：列出所有文件包括以‘.’开头的隐藏文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ ls -a</span><br><span class="line">.   anaconda-ks.cfg  .bash_logout   .bashrc</span><br></pre></td></tr></table></figure></p>
+<p>7）<strong>ls tmp*</strong> ：列出当前目录中所有以“tmp”开头的目录和文件的详细内容</p>
+<h3 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pwd</td>
+<td>显示当前的工作目录，执行pwd指令可立刻得知目前所在的工作目录的绝对路径名称</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ pwd</span><br><span class="line">/usr/local/tomcat</span><br></pre></td></tr></table></figure></p>
+<h3 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cd　[目录名]</td>
+<td>改变当前工作目录</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<p>1）<strong>cd ~</strong>  ：进入用户主目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ cd ~</span><br><span class="line">-bash-4.1$ pwd</span><br><span class="line">/usr/local/tomcat</span><br></pre></td></tr></table></figure></p>
+<p>2） <strong>cd ..</strong>  ：返回上级目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ pwd</span><br><span class="line">/usr/local/tomcat/logs</span><br><span class="line">-bash-4.1$ cd ..</span><br><span class="line">-bash-4.1$ pwd</span><br><span class="line">/usr/local/tomcat</span><br></pre></td></tr></table></figure></p>
+<p>3）<strong>cd ../..</strong>  ：返回上两级目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ pwd</span><br><span class="line">/usr/local/tomcat/logs</span><br><span class="line">-bash-4.1$ cd ../..</span><br><span class="line">-bash-4.1$ pwd</span><br><span class="line">/usr/local</span><br></pre></td></tr></table></figure></p>
+<p>4）<strong>cd !$</strong>  ：把上个命令的参数作为cd参数使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ ls center/logs/</span><br><span class="line">catalina.2018-10-08.log  catalina.out </span><br><span class="line">-bash-4.1$ cd !$</span><br><span class="line">cd center/logs/</span><br></pre></td></tr></table></figure></p>
+<h3 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cp [选项]</td>
+<td>源文件复制至目标文件，或将多个源文件复制至目标目录</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<p>1）<strong>cp a.txt b.txt</strong> ：将文件a.txt复制成文件b.txt，cp命令后加-v参数，可以显示详细信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ cp -v a.txt  b.txt</span><br><span class="line">`a.txt&apos; -&gt; `b.txt&apos;</span><br></pre></td></tr></table></figure></p>
+<p>2）<strong>cp -rv dir1 dir2</strong> ：递归将目录dir1复制到目录dir2下面，dir2不存在时创建新文件夹复制dir1下的所有文件到dir2，dir2存在时在dir2文件夹下复制整个dir1文件夹。</p>
+<h3 id="who"><a href="#who" class="headerlink" title="who"></a>who</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>who [选项] [file]</td>
+<td>显示目前登录到系统的用户</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ who</span><br><span class="line">lcpub    pts/0        2018-10-10 09:41 (172.22.44.24)</span><br><span class="line">lcpub    pts/1        2018-10-12 09:00 (172.22.41.11)</span><br><span class="line">lcpub    pts/2        2018-10-12 15:27 (172.22.41.73)</span><br><span class="line">lcpub    pts/3        2018-10-12 15:32 (172.22.41.16)</span><br><span class="line">lcpub    pts/4        2018-10-10 11:10 (172.22.41.183)</span><br><span class="line">lcpub    pts/7        2018-10-12 14:26 (172.22.114.36)</span><br></pre></td></tr></table></figure></p>
+<p>who命令的一般输出格式如下。</p>
+<p>名称[状态] 终端 时间[活动] 主机名[进程标识]</p>
+<p>名称：用户的登录名。<br>状态：表明终端是否对用户都是可写的。<br>终端：类似于pts/1、pts/2等，此终端标识在/dev目录中可找到。<br>时间：用户登录系统的时间。<br>活动：某个用户在自己的终端上最后一次活动发生以来到现在的时间，如果此项是个“.”，就表示一分钟内的终端活动；如果终端保持静止已经超过24小时或自从系统启动以来还没有被使用过，那么此项标记为“old”。<br>进程标识：用户登录shell的进程id。<br>主机名：登录到Linux系统上的客户端机器标识。</p>
+<p>1） 查看系统处于什么运行级别<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ who -r</span><br><span class="line">         run-level 3  2018-05-18 17:57</span><br></pre></td></tr></table></figure></p>
+<p>2）显示系统最近启动日期，以及当前每个用户的登录详情、终端状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ who -buT</span><br><span class="line">           system boot  2018-05-18 17:57</span><br><span class="line">lcpub    + pts/0        2018-10-10 09:41 05:35        5851 (172.22.44.24)</span><br><span class="line">lcpub    + pts/1        2018-10-12 09:00 06:13       13434 (172.22.41.11)</span><br><span class="line">lcpub    + pts/2        2018-10-12 15:27 00:06        4631 (172.22.41.73)</span><br><span class="line">lcpub    + pts/3        2018-10-12 15:32   .          5331 (172.22.41.16)</span><br><span class="line">lcpub    + pts/4        2018-10-10 11:10 01:18       22361 (172.22.41.183)</span><br><span class="line">lcpub    + pts/7        2018-10-12 14:26 00:24       28750 (172.22.114.36)</span><br></pre></td></tr></table></figure></p>
+<h3 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>touch [选项] [参数]</td>
+<td>将已存在的文件的时间标签修改为系统当前的时间(默认)，或创建空文件</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ touch a.log         #在当前目录下建立一个空文件a.log</span><br><span class="line">-bash-4.1$ ll</span><br><span class="line">总用量 0</span><br><span class="line">-rw-r--r-- 1 root root 0 4月  16 21:06 a.log</span><br><span class="line">-bash-4.1$ touch a.log       #更新a.log的修改时间为当前时间</span><br><span class="line">-bash-4.1$ ll</span><br><span class="line">总用量 0</span><br><span class="line">-rw-r--r-- 1 root root 0 4月  16 21:08 a.log</span><br><span class="line">-bash-4.1$ touch -t 201601011200.50 a.log    #设定文件的时间戳</span><br></pre></td></tr></table></figure></p>
+<h3 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rm [选项]文件</td>
+<td>删除文件，对于链接文件，只是删除整个链接文件，而原有文件保持不变</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<p>1）<strong>rm -f dir1</strong> ：强制删除文件，忽略不存在的文件，不提示确认（若文件是一个链接，则删除该链接，原有文件保持不变）</p>
+<p>2）<strong>rm -r dir2</strong> ：递归删除目录及其内容</p>
+<p>3）<strong>rm -rf dir3</strong> ：组合使用，表示强制性的递归删除目录及其子目录等内容，比较常用这种组合方式。</p>
+<h3 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mv [选项] 源文件 目标文件（目录）</td>
+<td>将源文件重命名为目标文件，或将源文件移动至指定目录</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<p>1）<strong>mv a.txt b.txt</strong> ：重命名a.txt为b.txt</p>
+<p>2）<strong>mv -fv a.txt b.txt</strong> ：将文件a.txt改名为b.txt，即使b.txt存在，也是直接覆盖掉</p>
+<p>3）<strong>mv -v a.txt dir2/</strong> ：移动a.txt到目录dir2下，显示详细信息</p>
+<h2 id="文本内容查看类"><a href="#文本内容查看类" class="headerlink" title="文本内容查看类"></a>文本内容查看类</h2><h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cat [选项] [参数]</td>
+<td>将文件或标准输入组合输出到标准输出，如果没有指定文件，或者文件为”-“，则从标准输入读取</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<p>1）<strong>cat a.log</strong> ：显示文件内容，命令后面加-b/-n/-ns可显示文件内容和行号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ cat -ns a.log </span><br><span class="line">     1    2011</span><br><span class="line">     2    </span><br><span class="line">     3    2014</span><br><span class="line">     4    2015</span><br></pre></td></tr></table></figure></p>
+<p>2）<strong>cat a.log &gt;test.log</strong>  ：将标准输入的内容定向输出到文件，按ctrl+D结束输入</p>
+<p>3）<strong>tac a.log</strong> ：反向输出文件内容</p>
+<h3 id="more"><a href="#more" class="headerlink" title="more"></a>more</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>more [-dlfpcsu ] [-num ] [+/ pattern] [+ linenum] [file … ]</td>
+<td>从前向后一页一页读取文件</td>
+</tr>
+</tbody>
+</table>
+<p><strong>常用操作命令：</strong></p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enter</td>
+<td>向下n行，需要定义。默认为1行</td>
+</tr>
+<tr>
+<td>Ctrl+F</td>
+<td>向下滚动一屏</td>
+</tr>
+<tr>
+<td>空格键</td>
+<td>向下滚动一屏</td>
+</tr>
+<tr>
+<td>Ctrl+B</td>
+<td>返回上一屏</td>
+</tr>
+<tr>
+<td>=</td>
+<td>输出当前行的行号</td>
+</tr>
+<tr>
+<td>：f</td>
+<td>输出文件名和当前行的行号</td>
+</tr>
+<tr>
+<td>V</td>
+<td>调用vi编辑器</td>
+</tr>
+<tr>
+<td>!命令</td>
+<td>调用Shell，并执行命令</td>
+</tr>
+<tr>
+<td>q</td>
+<td>退出more</td>
+</tr>
+<tr>
+<td>n/N</td>
+<td>查找符合模式的内容，按n为下一个,N为上一个</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<p>1）<strong>more -5 boot.log</strong> 显示boot.log文件，每次显示5行内容</p>
+<p>2）<strong>more -p -5 boot.log</strong> 每次显示5行内容，清屏显示</p>
+<p>组合用法： <strong>cat boot.log | more -5</strong> 也可达到同样的目的。</p>
+<h3 id="less"><a href="#less" class="headerlink" title="less"></a>less</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>less [参数]  文件</td>
+<td>对文件或其它输出进行分页显示</td>
+</tr>
+</tbody>
+</table>
+<p><strong>常用操作命令：</strong></p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-b</td>
+<td>&lt;缓冲区大小&gt; 设置缓冲区的大小</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>当文件显示结束后，自动离开</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>强迫打开特殊文件，例如外围设备代号、目录和二进制文件</td>
+</tr>
+<tr>
+<td>-g</td>
+<td>只标志最后搜索的关键词</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>忽略搜索时的大小写</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>显示类似more命令的百分比</td>
+</tr>
+<tr>
+<td>-N</td>
+<td>显示每行的行号</td>
+</tr>
+<tr>
+<td>-o &lt;文件名&gt;</td>
+<td>将less 输出的内容在指定文件中保存起来</td>
+</tr>
+<tr>
+<td>-Q</td>
+<td>不使用警告音</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>显示连续空行为一行</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>行过长时间将超出部分舍弃</td>
+</tr>
+<tr>
+<td>-x &lt;数字&gt;</td>
+<td>将“tab”键显示为规定的数字空格</td>
+</tr>
+<tr>
+<td>/字符串</td>
+<td>向下搜索“字符串”的功能</td>
+</tr>
+<tr>
+<td>?字符串</td>
+<td>向上搜索“字符串”的功能</td>
+</tr>
+<tr>
+<td>n：</td>
+<td>重复前一个搜索（与 / 或 ? 有关）</td>
+</tr>
+<tr>
+<td>N：</td>
+<td>反向重复前一个搜索（与 / 或 ? 有关）</td>
+</tr>
+<tr>
+<td>b</td>
+<td>向后翻一页</td>
+</tr>
+<tr>
+<td>d</td>
+<td>向后翻半页</td>
+</tr>
+<tr>
+<td>h</td>
+<td>显示帮助界面</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>退出less 命令</td>
+</tr>
+<tr>
+<td>u</td>
+<td>向前滚动半页</td>
+</tr>
+<tr>
+<td>y</td>
+<td>向前滚动一行</td>
+</tr>
+<tr>
+<td>空格键</td>
+<td>滚动一行</td>
+</tr>
+<tr>
+<td>回车键</td>
+<td>滚动一页</td>
+</tr>
+<tr>
+<td>[pagedown]：</td>
+<td>向下翻动一页</td>
+</tr>
+<tr>
+<td>[pageup]：</td>
+<td>向上翻动一页</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<p>1）<strong>ps -ef|less -N</strong> ：ps查看进程信息并通过less分页显示，同时显示行号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ ps -ef|less -N</span><br><span class="line"></span><br><span class="line">显示：</span><br><span class="line"> 1       1 UID        PID  PPID  C STIME TTY          TIME CMD</span><br><span class="line"> 2       2 root         1     0  0 Aug08 ?        00:00:00 /sbin/init</span><br><span class="line"> 3       3 root         2     0  0 Aug08 ?        00:00:00 [kthreadd]</span><br><span class="line"> 4       4 root         3     2  0 Aug08 ?        00:00:02 [ksoftirqd/0]</span><br></pre></td></tr></table></figure></p>
+<p>2）<strong>less test1.log test2.log</strong> ：浏览多个文件，输入 <strong>：n</strong>后，切换到 test2.log，输入 <strong>：p</strong> 后，切换到test1.log。当正在浏览一个文件时，也可以使用  <strong>:e</strong> 命令，打开另一个文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">less file1</span><br><span class="line"></span><br><span class="line">:e file2</span><br></pre></td></tr></table></figure></p>
+<p>3）附加导航说明：<br>| 操作 | 说明 |<br>| ——– | ——– |<br>|ctrl + F | 向前移动一屏|<br>|ctrl + B | 向后移动一屏|<br>|j | 向前移动一行|<br>|k | 向后移动一行|<br>|G | 移动到最后一行|<br>|g | 移动到第一行|<br>|q / ZZ | 退出 less 命令|<br>| /字符串 或 ？字符串 | 按 n往下找，大写的 N 则是往回(上)找 |</p>
+<h3 id="head"><a href="#head" class="headerlink" title="head"></a>head</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>head [参数]  文件</td>
+<td>显示档案的开头至标准输出中。如果指定了多于一个文件，在每一段输出前会给出文件名作为文件头。如果不指定文件，或者文件为”-“，则从标准输入读取数据</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<p>1）<strong>head -n 5 log.txt</strong> ：显示文件的前n行</p>
+<p>2）<strong>head -c 30 log.txt</strong>  ：显示文件前n个字节</p>
+<p>3）<strong>head log1.txt log2.txt</strong>  ：一次显示多个文件</p>
+<h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tail [  -f ] [  -c Number /  -n Number /  -m Number /  -b Number /  -k Number ] [ File ]</td>
+<td>实时跟踪日志文件</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<p>1）<strong>tail -f test.log</strong>  ：动态显示文件内容， <strong>tailf test.log</strong> 与其作用相同，按ctrl+c/ctrl+z结束退出。</p>
+<p>2）<strong>tailf -100 test.log</strong>  ：与第一条命令区别是每次动态显示n行内容。</p>
+<p>3）<strong>tail -n 100 test.log</strong> ：显示文件的后n行</p>
+<p>4）<strong>tailf test.log | grep ‘关键词’</strong> ：动态的显示含有关键词的日志内容，可以很好的定位到想要观察的信息。 </p>
+<h1 id="文件查找类"><a href="#文件查找类" class="headerlink" title="文件查找类"></a>文件查找类</h1><h3 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>locate [选择参数] [样式]</td>
+<td>快速的搜寻档案系统内是否有指定的档案</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ locate logs/sh</span><br><span class="line">/etc/shadow</span><br><span class="line">/etc/shadow-</span><br><span class="line">/etc/shells</span><br><span class="line">-bash-4.1$</span><br></pre></td></tr></table></figure></p>
+<p>查找logs目录下以sh开头的文件，若文件是新添加的，会存在找不到新文件的情况，使用命令“updatedb -v”可以手工更新使用的locatedb数据库，保证刚刚更新的文件可以查出来。<br>可以使用特殊字元（如<em> 或?等）来指定范本样式，如指定范本为kcpa</em>ner, locate会找出所有起始字串为kcpa且结尾为ner的档案或目录。</p>
+<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>find [文件] [选项]</td>
+<td>在目录结构中搜索文件，并执行指定的操作</td>
+</tr>
+</tbody>
+</table>
+<p>文件名选项是find命令最常用的选项，要么单独使用该选项，要么和其他选项一起使用。可以使用某种文件名模式来匹配文件，记住要用引号将文件名模式引起来。</p>
+<p>举例说明：</p>
+<p>1）<strong><strong>find ~ -name “*.log” -print</strong></strong></p>
+<p>不管当前路径是什么，如果想要在自己的根目录$HOME中查找文件名符合*.log的文件，使用 ~ 作为’pathname’参数，波浪号~代表了你的$HOME目录。 </p>
+<p>2）<strong><strong>find . -name “*.log” -print</strong></strong></p>
+<p>在当前目录及子目录中查找所有的‘ *.log‘文件  </p>
+<p>3）<strong><strong>find . -name “[A-Z]*” -print</strong></strong></p>
+<p>在当前目录及子目录中查找文件名以一个大写字母开头的文件 </p>
+<p>4）<strong><strong>find /etc -name “host*” -print</strong></strong> </p>
+<p>在/etc目录中查找文件名以host开头的文件</p>
+<p>5）<strong><strong>find ~ -name “*” -print 或 find . -print</strong></strong></p>
+<p>查找$HOME目录中的文件   </p>
+<p>6）<strong><strong>find / -name “*” -print</strong></strong></p>
+<p>让系统高负荷运行，就从根目录开始查找所有的文件  </p>
+<p>7）<strong><strong>find . -name “[a-z]*[4-9].log” -print</strong></strong></p>
+<p>在当前目录查找文件名以一个个小写字母开头，最后是4到9加上.log结束的文件</p>
+<h2 id="性能监控类"><a href="#性能监控类" class="headerlink" title="性能监控类"></a>性能监控类</h2><h3 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ps [选项]</td>
+<td>显示系统进程在瞬间的运行动态</td>
+</tr>
+</tbody>
+</table>
+<p>ps命令用于报告当前系统的进程状态。可以搭配kill指令随时中断、删除不必要的程序。ps命令是最基本同时也是非常强大的进程查看命令，使用该命令可以确定有哪些进程正在运行和运行的状态、进程是否结束、进程有没有僵死、哪些进程占用了过多的资源等等，总之大部分信息都是可以通过执行该命令得到的。</p>
+<p>举例说明：</p>
+<p>1） <strong>ps -ef</strong>：显示所有进程信息，连同命令行,用标准的格式显示进程，显示的项目有：UID，PID，PPID，C，STIME，TTY，TIME，CMD，与grep常用组合用法，用来查找特定进程，如 <strong>ps -ef|grep ssh</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ ps -ef|grep ssh</span><br><span class="line">root      1488     1  0 Oct15 ?        00:00:01 /usr/sbin/sshd</span><br><span class="line">root      8297  1488  0 Oct29 ?        00:00:00 sshd: lcpub [priv]</span><br><span class="line">lcpub     8301  8297  0 Oct29 ?        00:00:00 sshd: lcpub@notty</span><br><span class="line">root     10039  1488  0 Oct29 ?        00:00:00 sshd: lcpub [priv]</span><br><span class="line">lcpub    10041 10039  0 Oct29 ?        00:00:14 sshd: lcpub@pts/3</span><br><span class="line">lcpub    28682 28656  0 09:59 pts/4    00:00:00 grep ssh</span><br></pre></td></tr></table></figure></p>
+<p>2） <strong>ps aux</strong> ：列出目前所有的正在内存当中的程序，用BSD的格式来显示进程，显示的项目有：USER , PID , %CPU , %MEM , VSZ , RSS , TTY , STAT , START , TIME , COMMAND，也可配合grep使用</p>
+<p>STAT表示该程序目前的状态，主要的状态有</p>
+<p>R ：该程序目前正在运作，或者是可被运作</p>
+<p>S ：该程序目前正在睡眠当中 (可说是 idle 状态)，但可被某些讯号 (signal) 唤醒。</p>
+<p>T ：该程序目前正在侦测或者是停止了</p>
+<p>Z ：该程序应该已经终止，但是其父程序却无法正常的终止他，造成 zombie (疆尸) 程序的状态</p>
+<p><strong>注：以上两者结合grep使用时，推荐使用-ef，因为aux会截断command列。</strong></p>
+<h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>top [参数]</td>
+<td>实时显示系统中各个进程的资源占用状况</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ top</span><br><span class="line">top - 17:26:12 up 146 days, 23:28,  8 users,  load average: 0.80, 0.92, 0.94</span><br><span class="line">Tasks: 276 total,   1 running, 270 sleeping,   5 stopped,   0 zombie</span><br><span class="line">Cpu(s):  9.9%us,  4.3%sy,  0.0%ni, 85.0%id,  0.0%wa,  0.0%hi,  0.1%si,  0.7%st</span><br><span class="line">Mem:  11904800k total, 11498700k used,   406100k free,     8676k buffers</span><br><span class="line">Swap:  8191996k total,  3127832k used,  5064164k free,  1986860k cached</span><br><span class="line"></span><br><span class="line">  PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND                                                                                                                                                                                                         </span><br><span class="line">18272 lcpub     20   0 5380m 498m 5268 S 65.9  4.3 850:52.55 java                                                                                                                                                                                                             </span><br><span class="line">24574 lcpub     20   0 5512m 518m 5152 S 11.9  4.5   7998:10 java                                                                                                                                                                                                             </span><br><span class="line"> 4341 lcpub     20   0 5249m 427m 5436 S 11.3  3.7 552:13.72 java                                                                                                                                                                                                             </span><br><span class="line">30255 lcpub     20   0 5635m 759m 4956 S  6.3  6.5   9313:58 java                                                                                                                                                                                                             </span><br><span class="line">27720 lcpub     20   0 7965m 274m 5084 S  4.0  2.4   5462:28 java</span><br></pre></td></tr></table></figure></p>
+<p>第一行，任务队列信息，load average后面三个数表示1分钟、5分钟、15分钟的负载情况，load average数据是每隔5秒钟检查一次活跃的进程数，然后按特定算法计算出的数值。如果这个数除以逻辑CPU的数量，结果高于5的时候就表明系统在超负荷运转了。</p>
+<p>第二行，任务或进程信息。</p>
+<p>第三行，cpu状态信息，us - 用户空间占用CPU百分比，sy - 系统空间占用CPU百分比，id — 空闲CPU百分比。</p>
+<p>第四行，内存状态，</p>
+<p>第五行，swap交换分区信息，对于内存监控，在top里我们要时刻监控第五行swap交换分区的used，如果这个数值在不断的变化，说明内核在不断进行内存和swap的数据交换，这是真正的内存不够用了。</p>
+<p>从例子可以看出，PID为18272占用CPU空间最高，此时可以用ps命令来查找该进程号对应的应用程序有哪些，使用kill命令将其杀掉，释放内存。</p>
+<h3 id="free"><a href="#free" class="headerlink" title="free"></a>free</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>free [选项] [-s （间隔秒数）]</td>
+<td>显示系统使用和空闲的内存情况，包括物理内存、交互区内存(swap)和内核缓冲区内存。共享内存将被忽略</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ free</span><br><span class="line">             total       used       free     shared    buffers     cached</span><br><span class="line">Mem:      11904800   11759764     145036         28      10080    1880064</span><br><span class="line">-/+ buffers/cache:    9869620    2035180</span><br><span class="line">Swap:      8191996    3117692    5074304</span><br><span class="line"></span><br><span class="line">数值解释：</span><br><span class="line">total:总计物理内存的大小。</span><br><span class="line">used:已使用多大。</span><br><span class="line">free:可用有多少。</span><br><span class="line">Shared:多个进程共享的内存总额。</span><br><span class="line">Buffers/cached:磁盘缓存的大小。</span><br><span class="line">第三行(-/+ buffers/cached):</span><br><span class="line">used:已使用多大。</span><br><span class="line">free:可用有多少。</span><br><span class="line">第四行是交换分区SWAP的，也就是我们通常所说的虚拟内存。</span><br></pre></td></tr></table></figure></p>
+<p><strong>注：free后可带上-g（以GB为单位显示内存使用情况），-m（以MB为单位显示内存使用情况）</strong></p>
+<h3 id="vmstat"><a href="#vmstat" class="headerlink" title="vmstat"></a>vmstat</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vmstat [选项]</td>
+<td>用来显示虚拟内存的信息</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ vmstat 5 5</span><br><span class="line">procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu-----</span><br><span class="line"> r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st</span><br><span class="line"> 0  0 4010172 452052   1952 184452   10    6    67    81    2    3  7  3 88  1  1	</span><br><span class="line"> 1  0 4010136 450284   1960 185096   51    0    51   521 11345 22543  5  2 92  1  1	</span><br><span class="line"> 2  0 4010112 449928   1968 185524   32    0    32   389 10827 21193  6  2 89  2  1	</span><br><span class="line"> 1  0 4010112 449680   1976 186256    0    0     0    53 11188 22372  4  2 93  0  1	</span><br><span class="line"> 2  0 4010112 449456   1988 186696    0    0     1    93 10736 21189  3  2 95  0  0</span><br><span class="line"></span><br><span class="line">数值说明：</span><br><span class="line">procs：进程，r: 运行队列中进程数量，b: 等待IO的进程数量（进程阻塞）</span><br><span class="line">memory：内存，swpd: 使用虚拟内存大小，free: 可用内存大小，buff: 用作缓冲的内存大小，cache: 用作缓存的内存大小</span><br><span class="line">swap：交换区，si: 每秒从交换区写到内存的大小，so: 每秒写入交换区的内存大小</span><br><span class="line">io：（现在的Linux版本块的大小为1024bytes）,bi: 每秒读取的块数,bo: 每秒写入的块数</span><br><span class="line">system：系统，in: 每秒中断数，包括时钟中断，cs: 每秒上下文切换数。</span><br><span class="line">cpu（以百分比表示）：us: 用户进程执行时间(user time),sy: 系统进程执行时间(system time)，id: 空闲时间(包括IO等待时间),中央处理器的空闲时间，以百分比表示，wa: 等待IO时间</span><br></pre></td></tr></table></figure></p>
+<p><strong>vmstat 5 5</strong>：表示在5秒时间内进行5次采样</p>
+<p>1）swpd的数值不为0，说明机器此时的物理内存不足了，需要使用交换分区的虚拟内存，更详细的说，就是内核会将暂时不用的内存块信息写到交换空间，这样以来，物理内存得到了释放，这块内存就可以用于其它目的，当需要用到原始的内容时，这些信息会被重新从交换空间读入物理内存。</p>
+<p>2）si或so的数值不为0，表示物理内存不够用或者内存泄露了，要查找耗内存进程解决掉。</p>
+<p>3）bi或bo的数值不为0，表示IO操作过于频繁，需要调整。</p>
+<h3 id="iostat"><a href="#iostat" class="headerlink" title="iostat"></a>iostat</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iostat[参数] [时间] [次数]</td>
+<td>对系统的磁盘操作活动进行监视</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ iostat -x -k -d 2 2</span><br><span class="line">Linux 2.6.32-642.el6.x86_64 (sz-5-centos139) 	11/01/2018 	_x86_64_	(8 CPU)</span><br><span class="line"></span><br><span class="line">Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util</span><br><span class="line">sda              16.13   148.20   10.15   11.91   529.75   640.59   106.11     0.82   37.17   16.62   54.68   1.83   4.04</span><br><span class="line">dm-0              0.00     0.00    6.27  148.27   449.66   593.09    13.49     0.48    3.11   18.21    2.47   0.16   2.47</span><br><span class="line">dm-1              0.00     0.00   20.02   11.87    80.08    47.50     8.00     2.52   79.04   25.25  169.71   0.77   2.44</span><br><span class="line"></span><br><span class="line">Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util</span><br><span class="line">sda               0.00    28.50    3.00    5.00    24.00   134.00    39.50     0.05    6.31   13.33    2.10   2.19   1.75</span><br><span class="line">dm-0              0.00     0.00    2.50   33.50    20.00   134.00     8.56     0.09    2.58   12.80    1.82   0.26   0.95</span><br><span class="line">dm-1              0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00</span><br></pre></td></tr></table></figure></p>
+<p><strong>iostat 2 2</strong>：表示每隔2S输出磁盘IO的详细信息，总共采样2次</p>
+<p>1）iowait% 表示CPU等待IO时间占整个CPU周期的百分比，如果iowait值超过50%，或者明显大于%system、%user以及%idle，表示IO可能存在问题。</p>
+<p>2）avgqu-sz 表示磁盘IO队列长度，即IO等待个数。</p>
+<p>3）await 表示每次IO请求等待时间，包括等待时间和处理时间</p>
+<p>4）svctm 表示每次IO请求处理的时间</p>
+<p>5）%util 表示磁盘忙碌情况，一般该值超过80%表示该磁盘可能处于繁忙状态。</p>
+<h3 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lsof  [参数] [文件]</td>
+<td>查看文件的打开状况,用于调试程序，查看系统情况</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<p>1）<strong>lsof -p 3245</strong> ：列出pid=3245所打开的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ lsof -p 11545</span><br><span class="line">COMMAND   PID  USER   FD   TYPE             DEVICE  SIZE/OFF       NODE NAME</span><br><span class="line">java    11545 lcpub  cwd    DIR              253,0     20480    1706557 /usr/local/tomcat</span><br><span class="line">java    11545 lcpub  txt    REG              253,0      7734    2495575 /usr/jdk1.8.0_51/bin/java</span><br><span class="line"></span><br><span class="line">参数说明：</span><br><span class="line">COMMAND:进程的名称 </span><br><span class="line">PID:进程标识符</span><br><span class="line">USER:进程所有者</span><br><span class="line">FD:文件描述符，应用程序通过文件描述符识别该文件。每个进程都有自己的文件描述符表，因此FD可能会重名</span><br><span class="line">TYPE:文件类型</span><br><span class="line">DEVICE:指定磁盘的名称</span><br><span class="line">SIZE:文件的大小</span><br><span class="line">NODE:索引节点（文件在磁盘上的标识）</span><br><span class="line">NAME:打开文件的确切名称</span><br></pre></td></tr></table></figure>
+<p>2）<strong>lsof -i 4</strong> ：查看IpV4网络文件的打开情况（参数是6则是查看IpV6）</p>
+<p>3）<strong>lsof -c java -c sh</strong> ：显示command列中以java开头或以sh开头的打开的文件</p>
+<p>4）<strong>lsof -i @192.168.20.31</strong> ：查看与192.168.20.31连接的情况（在@前可以指定是TCP/UDP）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ lsof -i @10.201.5.139</span><br><span class="line">COMMAND   PID  USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME</span><br><span class="line">java     6849 lcpub  217u  IPv6 1842151043      0t0  TCP 10.201.5.129:21804-&gt;10.201.5.139:20338 (ESTABLISHED)</span><br><span class="line">java     6849 lcpub  219u  IPv6 1846413922      0t0  TCP 10.201.5.129:14786-&gt;10.201.5.139:38889 (ESTABLISHED)</span><br><span class="line">java    11545 lcpub  134u  IPv6 1864334046      0t0  TCP 10.201.5.129:37614-&gt;10.201.5.139:17439 (ESTABLISHED)</span><br></pre></td></tr></table></figure>
+<p>4）<strong>lsof -i:1883,1885</strong> ：可以查看1883,1885端口使用情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">COMMAND   PID USER   FD   TYPE    DEVICE SIZE/OFF NODE NAME</span><br><span class="line">java     8743 root   49u  IPv4 771370268      0t0  TCP *:1883 (LISTEN)</span><br><span class="line">main    16184 root   13u  IPv4 225274829      0t0  TCP localhost:w1884 (LISTEN)</span><br></pre></td></tr></table></figure>
+<h2 id="网络操作类"><a href="#网络操作类" class="headerlink" title="网络操作类"></a>网络操作类</h2><h3 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ifconfig [网络设备] [参数]</td>
+<td>获取网络接口配置信息并对此进行修改</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">-bash-4.1$ ifconfig</span><br><span class="line">eth0      Link encap:Ethernet  HWaddr 00:16:3E:4D:1C:CE  </span><br><span class="line">          inet addr:10.201.5.139  Bcast:10.201.5.255  Mask:255.255.255.0</span><br><span class="line">          inet6 addr: fe80::216:3eff:fe4d:1cce/64 Scope:Link</span><br><span class="line">          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span><br><span class="line">          RX packets:9917904378 errors:0 dropped:0 overruns:0 frame:0</span><br><span class="line">          TX packets:10614597211 errors:0 dropped:0 overruns:0 carrier:0</span><br><span class="line">          collisions:0 txqueuelen:1000 </span><br><span class="line">          RX bytes:1965689508995 (1.7 TiB)  TX bytes:1938435367086 (1.7 TiB)</span><br><span class="line"></span><br><span class="line">lo        Link encap:Local Loopback  </span><br><span class="line">          inet addr:127.0.0.1  Mask:255.0.0.0</span><br><span class="line">          inet6 addr: ::1/128 Scope:Host</span><br><span class="line">          UP LOOPBACK RUNNING  MTU:65536  Metric:1</span><br><span class="line">          RX packets:66852917 errors:0 dropped:0 overruns:0 frame:0</span><br><span class="line">          TX packets:66852917 errors:0 dropped:0 overruns:0 carrier:0</span><br><span class="line">          collisions:0 txqueuelen:0 </span><br><span class="line">          RX bytes:21017708123 (19.5 GiB)  TX bytes:21017708123 (19.5 GiB)</span><br><span class="line"></span><br><span class="line">说明：</span><br><span class="line">1.eth0:表示第一块网卡，其中 HWaddr 表示网卡的物理地址，可以看到目前这个网卡的物理地址(MAC地址）是00:16:3E:4D:1C:CE</span><br><span class="line">2.inet addr 用来表示网卡的IP地址，此网卡的 IP地址是 10.201.5.139，广播地址，Bcast:10.201.5.255，掩码地址Mask:255.255.255.0 </span><br><span class="line">3.lo 是表示主机的回坏地址，这个一般是用来测试一个网络程序，但又不想让局域网或外网的用户能够查看，只能在此台主机上</span><br><span class="line">运行和查看所用的网络接口。比如把 HTTPD服务器的指定到回坏地址，在浏览器输入 127.0.0.1 就能看到你所架WEB网站了。但只是您能</span><br><span class="line">看得到，局域网的其它主机或用户无从知道。</span><br></pre></td></tr></table></figure></p>
+<h3 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>netstat [-A&lt;网络类型&gt;] [–ip]</td>
+<td>用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<p>1）<strong>netstat -ntlp</strong> ：查看当前所有tcp端口。</p>
+<p>2）<strong>netstat -antp|grep 8080</strong> ：查找占用8080端口的程序（需要root权限）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">参数说明：</span><br><span class="line">  -a  show both listening and none-listening sockets.默认是不显示listening sockets</span><br><span class="line">  -t  仅显示tcp相关  默认是都显示</span><br><span class="line">  -u  仅显示udp相关  默认是都显示</span><br><span class="line">  -n  拒绝显示别名，显示数字</span><br><span class="line">  -l  仅列出有在Listen(监听)的服务状态</span><br><span class="line">  -p  显示建立相关连接的程序名   需要sudo才能看到其他用户起动的程序pid</span><br><span class="line"></span><br><span class="line">  -r  显示路由表</span><br><span class="line">  -c  每隔一段时间(秒)，执行该netstat命令</span><br><span class="line">  -i  显示各个网络接口的状况 </span><br><span class="line">  -s  按照协议进行统计</span><br></pre></td></tr></table></figure></p>
+<h2 id="其它命令"><a href="#其它命令" class="headerlink" title="其它命令"></a>其它命令</h2><h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>grep [参数]</td>
+<td>文本搜索工具，可用正则式进行匹配（查找日志最常用）</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<p>1）<strong>grep -A 10 ‘关键字’ test.log</strong> ：表示找到所有匹配行，并显示所有匹配行后的十行</p>
+<p>2）<strong>grep -B 1 ‘关键字’ test.log</strong> ：表示找到所有匹配行，并显示所有匹配行的前面一行</p>
+<p>3）<strong>grep -C 1 ‘关键字’ test.log</strong> ：表示找到所有匹配行，并显示所有匹配行的前一行，后一行</p>
+<p>4）<strong>grep -c ‘关键字’ test.log</strong> ：表示查找关键字有多少行匹配</p>
+<p>5）<strong>grep –color ‘关键字’ test.log</strong> ：把查找到的关键字用颜色标识</p>
+<p>6）<strong>grep -e [a-c]  -e [0-2] test.log</strong> ：-e后面跟正则，表示匹配正则里面的内容</p>
+<p>7）<strong>grep -f pattern.txt test.log</strong> ：表示在test.log指定查找和pattern.txt内容一样的信息</p>
+<p>8）<strong>test.log | grep “^a.d$”</strong> ：表示匹配出以a开头d结尾的关键字内容，分开匹配也可以</p>
+<p>9）<strong>tailf test.log | grep “abc”</strong> ：表示在test.log中匹配出关键字为“abc“的日志内容</p>
+<p>注：正则表达式需要另行学习。</p>
+<h3 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wget [参数] [文件命名] [下载地址]</td>
+<td>下载文件，支持HTTP，HTTPS和FTP协议</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<p>1）<strong>wget <a href="http://www.xxxxxx.com/xx.zip" target="_blank" rel="noopener">http://www.xxxxxx.com/xx.zip</a></strong> ：从网络下载一个文件并保存在当前目录，在下载的过程中会显示进度条</p>
+<p>2）<strong>wget -O test.zip <a href="http://www.xxxxxx.com/xx.zip" target="_blank" rel="noopener">http://www.xxxxxx.com/xx.zip</a></strong> ：下载以test.zip文件名重命名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">参数说明：</span><br><span class="line">–limit -rate：限速下载</span><br><span class="line">-c：断点续传，重新启动下载中断的文件，对于我们下载大文件时突然由于网络等原因中断非常有帮助</span><br><span class="line">-b：后台下载，下载非常大的文件的时候，我们可以使用参数-b进行后台下载</span><br><span class="line">-i：下载多个文件，后面一般跟txt文件，txt内容是多个下载地址</span><br></pre></td></tr></table></figure>
+<h3 id="tar-zip-rar-gz"><a href="#tar-zip-rar-gz" class="headerlink" title="tar/zip/rar/gz"></a>tar/zip/rar/gz</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tar/zip/rar/gz [参数] [文件命名] [重命名]</td>
+<td>解压或压缩文件</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<table>
+<thead>
+<tr>
+<th>解压命令</th>
+<th>压缩命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tar xvf FileName.tar</td>
+<td>tar cvf FileName.tar DirName （打包文件（非压缩））</td>
+</tr>
+<tr>
+<td>unzip FileName.zip</td>
+<td>zip FileName.zip DirName</td>
+</tr>
+<tr>
+<td>rar x FileName.rar</td>
+<td>rar a FileName.rar DirName</td>
+</tr>
+<tr>
+<td>gzip -d FileName.gz</td>
+<td>gzip FileName</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sftp-ftp"><a href="#sftp-ftp" class="headerlink" title="sftp/ftp"></a>sftp/ftp</h3><table>
+<thead>
+<tr>
+<th>基本语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sftp -oPort=[远程端口号] [user]@[ip]</td>
+<td>使用sftp协议来远程连接</td>
+</tr>
+<tr>
+<td>ftp [hostname/ ip-address]</td>
+<td>使用ftp协议来远程连接</td>
+</tr>
+</tbody>
+</table>
+<p>举例说明：</p>
+<p>1）<strong>sftp&gt; get /var/index.txt /home/myfile/</strong> ：将远程主机的/var/目录下的index.txt文件下载到本地/home/myfile/下</p>
+<p>2）<strong>sftp&gt; put /home/downloads/my.pdf /var/user/</strong> ：将本地的/home/downloads/目录下的my.pdf上传到远程主机/var/user/下</p>
+<p>注：以上命令对ftp同样适用。</p>
+<h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续~~~"></a>未完待续~~~</h3><p>欢迎大家来补充你们的Linux命令骚操作~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/基础/" rel="tag"># 基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/21/Python调用JAVA包-从入门到放弃/" rel="next" title="Python调用JAVA包-从入门到放弃">
+                <i class="fa fa-chevron-left"></i> Python调用JAVA包-从入门到放弃
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Ningxw" />
+            
+              <p class="site-author-name" itemprop="name">Ningxw</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件系统管理类"><span class="nav-number">2.</span> <span class="nav-text">文件系统管理类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ls"><span class="nav-number">2.1.</span> <span class="nav-text">ls</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pwd"><span class="nav-number">2.2.</span> <span class="nav-text">pwd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cd"><span class="nav-number">2.3.</span> <span class="nav-text">cd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cp"><span class="nav-number">2.4.</span> <span class="nav-text">cp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#who"><span class="nav-number">2.5.</span> <span class="nav-text">who</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#touch"><span class="nav-number">2.6.</span> <span class="nav-text">touch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rm"><span class="nav-number">2.7.</span> <span class="nav-text">rm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mv"><span class="nav-number">2.8.</span> <span class="nav-text">mv</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本内容查看类"><span class="nav-number">3.</span> <span class="nav-text">文本内容查看类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cat"><span class="nav-number">3.1.</span> <span class="nav-text">cat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#more"><span class="nav-number">3.2.</span> <span class="nav-text">more</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less"><span class="nav-number">3.3.</span> <span class="nav-text">less</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#head"><span class="nav-number">3.4.</span> <span class="nav-text">head</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tail"><span class="nav-number">3.5.</span> <span class="nav-text">tail</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件查找类"><span class="nav-number"></span> <span class="nav-text">文件查找类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#locate"><span class="nav-number">0.1.</span> <span class="nav-text">locate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">0.2.</span> <span class="nav-text">find</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能监控类"><span class="nav-number">1.</span> <span class="nav-text">性能监控类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ps"><span class="nav-number">1.1.</span> <span class="nav-text">ps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#top"><span class="nav-number">1.2.</span> <span class="nav-text">top</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#free"><span class="nav-number">1.3.</span> <span class="nav-text">free</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vmstat"><span class="nav-number">1.4.</span> <span class="nav-text">vmstat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iostat"><span class="nav-number">1.5.</span> <span class="nav-text">iostat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lsof"><span class="nav-number">1.6.</span> <span class="nav-text">lsof</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络操作类"><span class="nav-number">2.</span> <span class="nav-text">网络操作类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ifconfig"><span class="nav-number">2.1.</span> <span class="nav-text">ifconfig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netstat"><span class="nav-number">2.2.</span> <span class="nav-text">netstat</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它命令"><span class="nav-number">3.</span> <span class="nav-text">其它命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#grep"><span class="nav-number">3.1.</span> <span class="nav-text">grep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wget"><span class="nav-number">3.2.</span> <span class="nav-text">wget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tar-zip-rar-gz"><span class="nav-number">3.3.</span> <span class="nav-text">tar/zip/rar/gz</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sftp-ftp"><span class="nav-number">3.4.</span> <span class="nav-text">sftp/ftp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#未完待续"><span class="nav-number">3.5.</span> <span class="nav-text">未完待续~~~</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ningxw</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = '';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'WC7T2lOHKOiT38n2BRMqQ4YD-gzGzoHsz',
+        appKey: 'do5cmS6Kl4OrS8J4Jd1SBu0p',
+        placeholder: 'ヾﾉ≧∀≦)o 留个言吧~',
+        avatar:'/images/avatar.jpg',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("WC7T2lOHKOiT38n2BRMqQ4YD-gzGzoHsz", "do5cmS6Kl4OrS8J4Jd1SBu0p");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
