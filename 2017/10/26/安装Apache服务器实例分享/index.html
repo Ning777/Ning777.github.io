@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="python,接口测试," />
+  <meta name="keywords" content="环境," />
 
 
 
@@ -89,20 +89,31 @@
 
 
 
-<meta name="description" content="前言近段时间在做接口的时候就碰上了需要用到Java包内函数以作请求加解密，由于我python和java都贼差，算法看不懂，翻译不出同等作用的python代码，所以不得不向Java屈服（哭泣ing..）虽无法否认Java在处理很多问题上确实比Python要好那么一丢丢，但我们Python也很强呀，身为胶水语言，没有什么是我们Python做不了的事呢~（喂，你很拽哦！）以下，真的不来围观吗~~">
-<meta name="keywords" content="python,接口测试">
+<meta name="description" content="前言本文主要是记录安装过程中踩到的坑，快点跟着我的教程来，让你轻轻松松部署Apache服务器~！">
+<meta name="keywords" content="环境">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python调用JAVA包-从入门到放弃">
-<meta property="og:url" content="https://ning777.github.io/2018/08/21/Python调用JAVA包-从入门到放弃/index.html">
+<meta property="og:title" content="安装Apache服务器实例分享">
+<meta property="og:url" content="https://ning777.github.io/2017/10/26/安装Apache服务器实例分享/index.html">
 <meta property="og:site_name" content="宁大大噢耶">
-<meta property="og:description" content="前言近段时间在做接口的时候就碰上了需要用到Java包内函数以作请求加解密，由于我python和java都贼差，算法看不懂，翻译不出同等作用的python代码，所以不得不向Java屈服（哭泣ing..）虽无法否认Java在处理很多问题上确实比Python要好那么一丢丢，但我们Python也很强呀，身为胶水语言，没有什么是我们Python做不了的事呢~（喂，你很拽哦！）以下，真的不来围观吗~~">
+<meta property="og:description" content="前言本文主要是记录安装过程中踩到的坑，快点跟着我的教程来，让你轻轻松松部署Apache服务器~！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ning777.github.io/2018/08/21/Python调用JAVA包-从入门到放弃/1.png">
-<meta property="og:updated_time" content="2019-02-14T05:55:03.456Z">
+<meta property="og:image" content="https://ning777.github.io/2017/10/26/安装Apache服务器实例分享/1.png">
+<meta property="og:image" content="https://ning777.github.io/2017/10/26/安装Apache服务器实例分享/2.png">
+<meta property="og:image" content="https://ning777.github.io/2017/10/26/安装Apache服务器实例分享/3.png">
+<meta property="og:image" content="https://ning777.github.io/2017/10/26/安装Apache服务器实例分享/4.png">
+<meta property="og:image" content="https://ning777.github.io/2017/10/26/安装Apache服务器实例分享/5.png">
+<meta property="og:image" content="https://ning777.github.io/2017/10/26/安装Apache服务器实例分享/6.png">
+<meta property="og:image" content="https://ning777.github.io/2017/10/26/安装Apache服务器实例分享/7.png">
+<meta property="og:image" content="https://ning777.github.io/2017/10/26/安装Apache服务器实例分享/8.png">
+<meta property="og:image" content="https://ning777.github.io/2017/10/26/安装Apache服务器实例分享/9.png">
+<meta property="og:image" content="https://ning777.github.io/2017/10/26/安装Apache服务器实例分享/10.png">
+<meta property="og:image" content="https://ning777.github.io/2017/10/26/安装Apache服务器实例分享/12.png">
+<meta property="og:image" content="https://ning777.github.io/2017/10/26/安装Apache服务器实例分享/11.png">
+<meta property="og:updated_time" content="2020-05-07T08:07:07.982Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python调用JAVA包-从入门到放弃">
-<meta name="twitter:description" content="前言近段时间在做接口的时候就碰上了需要用到Java包内函数以作请求加解密，由于我python和java都贼差，算法看不懂，翻译不出同等作用的python代码，所以不得不向Java屈服（哭泣ing..）虽无法否认Java在处理很多问题上确实比Python要好那么一丢丢，但我们Python也很强呀，身为胶水语言，没有什么是我们Python做不了的事呢~（喂，你很拽哦！）以下，真的不来围观吗~~">
-<meta name="twitter:image" content="https://ning777.github.io/2018/08/21/Python调用JAVA包-从入门到放弃/1.png">
+<meta name="twitter:title" content="安装Apache服务器实例分享">
+<meta name="twitter:description" content="前言本文主要是记录安装过程中踩到的坑，快点跟着我的教程来，让你轻轻松松部署Apache服务器~！">
+<meta name="twitter:image" content="https://ning777.github.io/2017/10/26/安装Apache服务器实例分享/1.png">
 
 
 
@@ -132,13 +143,13 @@
 
 
 
-  <link rel="canonical" href="https://ning777.github.io/2018/08/21/Python调用JAVA包-从入门到放弃/"/>
+  <link rel="canonical" href="https://ning777.github.io/2017/10/26/安装Apache服务器实例分享/"/>
 
 
 
 
 
-  <title>Python调用JAVA包-从入门到放弃 | 宁大大噢耶</title>
+  <title>安装Apache服务器实例分享 | 宁大大噢耶</title>
   
 
 
@@ -265,7 +276,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ning777.github.io/2018/08/21/Python调用JAVA包-从入门到放弃/">
+    <link itemprop="mainEntityOfPage" href="https://ning777.github.io/2017/10/26/安装Apache服务器实例分享/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ningxw">
@@ -282,7 +293,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Python调用JAVA包-从入门到放弃</h1>
+          <h1 class="post-title" itemprop="name headline">安装Apache服务器实例分享</h1>
         
 
         <div class="post-meta">
@@ -294,8 +305,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-21T11:04:33+08:00">
-                2018-08-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-26T15:49:28+08:00">
+                2017-10-26
               </time>
             
 
@@ -317,8 +328,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/测试技术/" itemprop="url" rel="index">
-                    <span itemprop="name">测试技术</span>
+                  <a href="/categories/环境搭建/" itemprop="url" rel="index">
+                    <span itemprop="name">环境搭建</span>
                   </a>
                 </span>
 
@@ -335,8 +346,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/21/Python调用JAVA包-从入门到放弃/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/21/Python调用JAVA包-从入门到放弃/" itemprop="commentCount"></span>
+                <a href="/2017/10/26/安装Apache服务器实例分享/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/10/26/安装Apache服务器实例分享/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -344,7 +355,7 @@
 
           
           
-             <span id="/2018/08/21/Python调用JAVA包-从入门到放弃/" class="leancloud_visitors" data-flag-title="Python调用JAVA包-从入门到放弃">
+             <span id="/2017/10/26/安装Apache服务器实例分享/" class="leancloud_visitors" data-flag-title="安装Apache服务器实例分享">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -375,56 +386,32 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>近段时间在做接口的时候就碰上了需要用到Java包内函数以作请求加解密，由于我python和java都贼差，算法看不懂，翻译不出同等作用的python代码，所以不得不向Java屈服（哭泣ing..）虽无法否认Java在处理很多问题上确实比Python要好那么一丢丢，但我们Python也很强呀，身为胶水语言，没有什么是我们Python做不了的事呢~（喂，你很拽哦！）以下，真的不来围观吗~~</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文主要是记录安装过程中踩到的坑，快点跟着我的教程来，让你轻轻松松部署Apache服务器~！</p>
 <a id="more"></a>
-<h2 id="Jpype简述"><a href="#Jpype简述" class="headerlink" title="Jpype简述"></a>Jpype简述</h2><blockquote>
-<p>咳咳，其实这一段可以自行谷歌or百度，但作为学习笔记，还是有必要啰嗦一遍~</p>
-</blockquote>
+<h2 id="下载Apache安装包"><a href="#下载Apache安装包" class="headerlink" title="下载Apache安装包"></a>下载Apache安装包</h2><p><a href="http://www.apachelounge.com/download/" target="_blank" rel="noopener">http://www.apachelounge.com/download/</a><br><img src="/2017/10/26/安装Apache服务器实例分享/1.png" alt=""></p>
+<h2 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h2><p><img src="/2017/10/26/安装Apache服务器实例分享/2.png" alt=""></p>
+<h2 id="修改文件"><a href="#修改文件" class="headerlink" title="修改文件"></a>修改文件</h2><p>打开C:\Apache\Apache24\conf目录下的httpd.conf文件并作以下修改：</p>
 <ul>
-<li><strong>Jpype定义</strong></li>
+<li><p>ServerRoot（apache目录）改为C:\Apache\Apache24<br><img src="/2017/10/26/安装Apache服务器实例分享/3.png" alt=""></p>
+</li>
+<li><p>ServerName （服务器名称） 去掉#，改为127.0.0.1<br><img src="/2017/10/26/安装Apache服务器实例分享/4.png" alt=""></p>
+</li>
+<li><p>DocumentRoot （修改网站根目录地址）自己设置，一般设置为C:\Apache\Apache24\htdocs</p>
+</li>
+<li><p><directory "网站根目录地址"="">  与上一步地址相同<br><img src="/2017/10/26/安装Apache服务器实例分享/5.png" alt=""></directory></p>
+</li>
+<li><p>ScriptAlias  改为   /cgi-bin/ “apache目录+/cgi-bin/“</p>
+</li>
+<li><directory "apache目录+="" cgi-bin="" "="">（与上面那个Directory 不同）<br><img src="/2017/10/26/安装Apache服务器实例分享/6.png" alt=""></directory></li>
 </ul>
-<p>进入<a href="http://http://jpype.sourceforge.net/" title="Jpype官网" target="_blank" rel="noopener">Jpype官网</a> 可以看到一段描述：</p>
-<p><strong>JPype是允许python程序完全访问java类库的一项行为活动。这不是像Jython/JPython那样通过重新实现Python来实现的，而是通过在两台虚拟机中进行本地级的接口来实现的</strong></p>
-<p>简单来说，其实也就是用来克服Python在某些领域上（如服务器端的编程）的不足，方便我们调用Java程序来进行其它开发工作等。</p>
-<ul>
-<li><strong>Jpype与Jython的区别</strong></li>
-</ul>
-<p>1）运行环境不同：jython运行在jvm上，而JPype的实际运行环境仍然是python runtime，只是在运行期间启动了一个嵌入的jvm</p>
-<p>2）使用者不同：jython是给java程序玩的，JPype是给python程序员玩的</p>
-<h2 id="Jpype安装"><a href="#Jpype安装" class="headerlink" title="Jpype安装"></a>Jpype安装</h2><blockquote>
-<p>emmmm，这个安装过程，是大坑，天坑！！（what the … hell ：）….）</p>
-</blockquote>
-<ul>
-<li><strong>环境准备</strong></li>
-</ul>
-<p>我的环境配置是：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Win <span class="number">7</span>/<span class="number">10</span> </span><br><span class="line">Python <span class="number">3.6</span> (<span class="number">64</span> bit） </span><br><span class="line">Java：jdk1<span class="number">.8</span><span class="number">.0</span>_181 (<span class="number">64</span> bit)</span><br></pre></td></tr></table></figure>
-<p><strong>PS：python的环境一定要跟java的环境要一致，不然调用jvm时会报内存泄露哟~</strong></p>
-<ul>
-<li><strong>安装jpype库</strong></li>
-</ul>
-<p>使用<strong>pip install jpype1</strong>进行安装，运行后你会发现，蹭蹭蹭，报错啦！</p>
-<p><img src="/2018/08/21/Python调用JAVA包-从入门到放弃/1.png" alt=""></p>
-<p>根据错误提示，是缺少了VS C++插件，我在 <a href="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-%E8%B8%A9%E5%9D%91%E8%AE%B0/">Flask-Apache-mod-wsgi-踩坑记</a> 这篇博客上有提到插件的地址，在这里再放一下地址 - &gt; <a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=48145" target="_blank" rel="noopener">Visual C++编译器下载地址</a> 记得给我点赞哟嘻嘻~</p>
-<ul>
-<li><strong>再次安装jpype</strong></li>
-</ul>
-<p>当你装完插件后，执行pip，仍然报错了，那就试试第二种方法吧~</p>
-<p>从网上下载jpype1 相关的库文件，传送门 -&gt; <a href="https://download.csdn.net/download/liujingqiu/9973316" target="_blank" rel="noopener">jpype库文件</a>，根据步骤一步步安装，以下：</p>
-<p>1）手动安装 wheel<br>C:\Python36\Scripts&gt;pip install wheel </p>
-<p>2）待wheel安装成功后，再次安装已经下载的 JPype1-0.6.2-cp36-cp36m-win_amd64.whl 文件<br>C:\Python36\Scripts&gt;pip install JPype1-0.6.2-cp36-cp36m-win_amd64.whl </p>
-<p>3）成功安装后，尝试运行简单的调用jvm脚本，发现还是有报错<br>ImportError: numpy.core.multiarray failed to import</p>
-<p>4）通过报错可判断可能是缺少了numpy库，再次安装<strong>pip install numpy</strong>， 安装过慢可以尝试用<strong>pip install -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a> numpy</strong></p>
-<p>进行安装，稍等片刻后，我们再运行调用JVM的脚本</p>
-<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import jpype</span><br><span class="line">jvmPath = jpype.getDefaultJVMPath()    # 默认的JVM路径</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(jvmPath)</span></span></span><br><span class="line"><span class="function"><span class="title">jpype</span>.<span class="title">startJVM</span><span class="params">(jvmPath)</span></span></span><br><span class="line"><span class="function"><span class="title">jpype</span>.<span class="title">java</span>.<span class="title">lang</span>.S<span class="title">ystem</span>.<span class="title">out</span>.<span class="title">println</span><span class="params">(<span class="string">"hello world!"</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">jpype</span>.<span class="title">java</span>.<span class="title">lang</span>.S<span class="title">ystem</span>.<span class="title">out</span>.<span class="title">println</span><span class="params">(<span class="string">"I hate you!"</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">jpype</span>.<span class="title">shutdownJVM</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
-<p>此时运行后，后台没有报错，恭喜啦啦啦你终于成功安装了jpype，然后我们就可以愉快的玩耍了~~~</p>
-<p>（ps:如果还是有报错，大家就自行百度相应的报错找解决方法啦，恕我无能为力啦~）</p>
-<h2 id="Jpype运用"><a href="#Jpype运用" class="headerlink" title="Jpype运用"></a>Jpype运用</h2><p>其实到了这里我都感觉自己不知道可以说啥了，毕竟网上描述jpype使用的教程实在是太多了，而且非常的详细，我就不多说啦，在这里贴下我的实际运用代码，大家可以自行参考下哦~</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">from jpype import *   <span class="comment">#引入jpype</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">All_get</span>(<span class="title">object</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        jvmpath = getDefaultJVMPath()    <span class="comment">#获取默认的JVM路径</span></span><br><span class="line">        jarpath = [<span class="string">"E:\Java_jar\java-utils.jar"</span>]   <span class="comment"># 你需要调用的jar包路径</span></span><br><span class="line">        jvmarg = <span class="string">"-Djava.class.path=&#123;&#125;"</span>.format(<span class="string">":"</span>.join(jarpath))  <span class="comment"># jvm启动参数，调用第三方java拓展包</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isJVMStarted()<span class="symbol">:</span></span><br><span class="line">            startJVM(jvmpath, jvmarg)     <span class="comment"># 启动JVM虚拟机</span></span><br><span class="line">        <span class="keyword">self</span>.aesutils = JClass(<span class="string">'com.cryption.aes.AESUtils'</span>)   <span class="comment">#实例化对象</span></span><br><span class="line">        <span class="keyword">self</span>.rsautils = JClass(<span class="string">'com.cryption.rsa.RSAUtils'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dec_aes</span><span class="params">(<span class="keyword">self</span>, data, key)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.aes = <span class="keyword">self</span>.aesutils.decrypt(data, key)     <span class="comment"># 调用java对象的方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.aes</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dec_rsa</span><span class="params">(<span class="keyword">self</span>, data, key)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.rsa = <span class="keyword">self</span>.rsautils.decrypt(data, key)  <span class="comment"># 调用java对象的方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.rsa</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dec_sign</span><span class="params">(<span class="keyword">self</span>, content_re, sign_re, org_pub)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.sign_dec = <span class="keyword">self</span>.rsautils.checkSign(content_re, sign_re, org_pub)  <span class="comment"># 调用java对象的方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.sign_dec</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name_<span class="number">_</span> == <span class="string">'__main__'</span><span class="symbol">:</span></span><br><span class="line">    All_get()</span><br><span class="line">    shutdownJVM()     <span class="comment"># 关闭JVM虚拟机</span></span><br></pre></td></tr></table></figure>
-<p>以上就是我常用的代码啦，是不是很简单呢，哈哈哈，主要还是安装过程比较繁琐，要耐心哟~</p>
-<h2 id="抛弃Jpype"><a href="#抛弃Jpype" class="headerlink" title="抛弃Jpype"></a>抛弃Jpype</h2><p>为啥要抛弃呢？这个问题问得好，陈独秀同学请你坐下~</p>
-<p>虽说jpype可以很方便的让我们调用java包方法，但每一次的调用都要启动一次JVM，非常的耗内存和降低了运行效率，因此如果能用python实现java的方法的话，这样就是最好的啦，同时锻炼两种语言能力哟~</p>
-<p>由于加解密算法是公司机密，这里就不贴出来啦嘻嘻，希望大家都能用python愉快的工作哟~</p>
+<h2 id="安装卸载命令：每改一次-conf文件，都要卸载后重新安装"><a href="#安装卸载命令：每改一次-conf文件，都要卸载后重新安装" class="headerlink" title="安装卸载命令：每改一次.conf文件，都要卸载后重新安装"></a>安装卸载命令：每改一次.conf文件，都要卸载后重新安装</h2><p>安装/卸载命令（以管理员身份运行CMD）<br>安装命令：httpd -k install -n apache<br>卸载命令：httpd -k uninstall -n apache</p>
+<h2 id="启动Apache服务"><a href="#启动Apache服务" class="headerlink" title="启动Apache服务"></a>启动Apache服务</h2><p>开始–&gt;运行–&gt;services.msc<br><img src="/2017/10/26/安装Apache服务器实例分享/7.png" alt=""></p>
+<p>开启不了服务，就进入C:\Apache\Apache24\bin，双击ApacheMonitor.exe，点击start<br><img src="/2017/10/26/安装Apache服务器实例分享/8.png" alt=""></p>
+<h2 id="错误解决"><a href="#错误解决" class="headerlink" title="错误解决"></a>错误解决</h2><h3 id="端口占用"><a href="#端口占用" class="headerlink" title="端口占用"></a>端口占用</h3><p><img src="/2017/10/26/安装Apache服务器实例分享/9.png" alt=""></p>
+<p>这是因为80端口已经被用了，所以你就要改端口，还是在httpd.conf文件中找到Listen 80这一行（大概在58行），将80改为8080就行了，然后再卸载，安装。<br>直到出现这样的提示：<br><img src="/2017/10/26/安装Apache服务器实例分享/10.png" alt=""></p>
+<h3 id="MSC-VER版本不对应"><a href="#MSC-VER版本不对应" class="headerlink" title="MSC_VER版本不对应"></a>MSC_VER版本不对应</h3><p>出现版本不对应问题，一般系统会提示缺少某些插件，根据MSC_VER版本找到对应的visual环境，下载安装即可。对应目录如下：<br><img src="/2017/10/26/安装Apache服务器实例分享/12.png" alt=""></p>
+<h2 id="测试是否成功"><a href="#测试是否成功" class="headerlink" title="测试是否成功"></a>测试是否成功</h2><p>找个浏览器，再输入网址的地方输入<a href="http://127.0.0.1:8080/index.html，出现以下界面则成功" target="_blank" rel="noopener">http://127.0.0.1:8080/index.html，出现以下界面则成功</a><br><img src="/2017/10/26/安装Apache服务器实例分享/11.png" alt=""></p>
+<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>怎么会有这么完美的教程呢~~！！</p>
 
       
     </div>
@@ -442,9 +429,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
-          
-            <a href="/tags/接口测试/" rel="tag"># 接口测试</a>
+            <a href="/tags/环境/" rel="tag"># 环境</a>
           
         </div>
       
@@ -457,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/09/SQL学习笔记/" rel="next" title="SQL学习笔记">
-                <i class="fa fa-chevron-left"></i> SQL学习笔记
+              <a href="/2017/03/23/关于接口自动化的那些事-基于-Python/" rel="next" title="关于接口自动化的那些事 - 基于 Python">
+                <i class="fa fa-chevron-left"></i> 关于接口自动化的那些事 - 基于 Python
               </a>
             
           </div>
@@ -467,8 +452,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/21/工作中实用的Linux命令/" rel="prev" title="工作中实用的Linux命令">
-                工作中实用的Linux命令 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/" rel="prev" title="Flask-Apache-mod-wsgi-踩坑记">
+                Flask-Apache-mod-wsgi-踩坑记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -608,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jpype简述"><span class="nav-number">2.</span> <span class="nav-text">Jpype简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jpype安装"><span class="nav-number">3.</span> <span class="nav-text">Jpype安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jpype运用"><span class="nav-number">4.</span> <span class="nav-text">Jpype运用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抛弃Jpype"><span class="nav-number">5.</span> <span class="nav-text">抛弃Jpype</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载Apache安装包"><span class="nav-number">2.</span> <span class="nav-text">下载Apache安装包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解压安装包"><span class="nav-number">3.</span> <span class="nav-text">解压安装包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文件"><span class="nav-number">4.</span> <span class="nav-text">修改文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装卸载命令：每改一次-conf文件，都要卸载后重新安装"><span class="nav-number">5.</span> <span class="nav-text">安装卸载命令：每改一次.conf文件，都要卸载后重新安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动Apache服务"><span class="nav-number">6.</span> <span class="nav-text">启动Apache服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误解决"><span class="nav-number">7.</span> <span class="nav-text">错误解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#端口占用"><span class="nav-number">7.1.</span> <span class="nav-text">端口占用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MSC-VER版本不对应"><span class="nav-number">7.2.</span> <span class="nav-text">MSC_VER版本不对应</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试是否成功"><span class="nav-number">8.</span> <span class="nav-text">测试是否成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束"><span class="nav-number">9.</span> <span class="nav-text">结束</span></a></li></ol></div>
             
 
           </div>
