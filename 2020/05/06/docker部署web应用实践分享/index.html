@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "391fe96b"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="环境," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言没接触docker之前，觉得这个是很悬乎的东西，实践了一把后发现其实还蛮简单的，下面来用实例给大家介绍一下docker是如何部署一个WEB应用的。  ps：关于docker的介绍和安装不在本次分享里哦~同学们可自行补充基础知识。">
+<meta name="keywords" content="环境">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker部署web应用实践分享">
+<meta property="og:url" content="https://ning777.github.io/2020/05/06/docker部署web应用实践分享/index.html">
+<meta property="og:site_name" content="宁大大噢耶">
+<meta property="og:description" content="前言没接触docker之前，觉得这个是很悬乎的东西，实践了一把后发现其实还蛮简单的，下面来用实例给大家介绍一下docker是如何部署一个WEB应用的。  ps：关于docker的介绍和安装不在本次分享里哦~同学们可自行补充基础知识。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ning777.github.io/2020/05/06/docker部署web应用实践分享/docker11.png">
+<meta property="og:updated_time" content="2020-05-07T06:45:46.729Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="docker部署web应用实践分享">
+<meta name="twitter:description" content="前言没接触docker之前，觉得这个是很悬乎的东西，实践了一把后发现其实还蛮简单的，下面来用实例给大家介绍一下docker是如何部署一个WEB应用的。  ps：关于docker的介绍和安装不在本次分享里哦~同学们可自行补充基础知识。">
+<meta name="twitter:image" content="https://ning777.github.io/2020/05/06/docker部署web应用实践分享/docker11.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ning777.github.io/2020/05/06/docker部署web应用实践分享/"/>
+
+
+
+
+
+  <title>docker部署web应用实践分享 | 宁大大噢耶</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">宁大大噢耶</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个测试渣渣最后的挣扎~:)</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ning777.github.io/2020/05/06/docker部署web应用实践分享/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ningxw">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宁大大噢耶">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">docker部署web应用实践分享</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-06T18:16:14+08:00">
+                2020-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/环境搭建/" itemprop="url" rel="index">
+                    <span itemprop="name">环境搭建</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/05/06/docker部署web应用实践分享/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/06/docker部署web应用实践分享/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/05/06/docker部署web应用实践分享/" class="leancloud_visitors" data-flag-title="docker部署web应用实践分享">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>没接触docker之前，觉得这个是很悬乎的东西，实践了一把后发现其实还蛮简单的，下面来用实例给大家介绍一下docker是如何部署一个WEB应用的。</p>
+<hr>
+<p>ps：关于docker的介绍和安装不在本次分享里哦~同学们可自行补充基础知识。</p>
+<a id="more"></a>
+<h2 id="docker部署前"><a href="#docker部署前" class="headerlink" title="docker部署前"></a>docker部署前</h2><p>首先是得有个web应用，我实践的项目是python+flask，目录结构如下：</p>
+<p><img src="/2020/05/06/docker部署web应用实践分享/docker11.png" alt=""></p>
+<p>在部署前，先编写docker file文件，例子如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基础镜像</span></span><br><span class="line">FROM python:<span class="number">3.7</span><span class="number">.2</span></span><br><span class="line"><span class="comment"># 维护者信息</span></span><br><span class="line">MAINTAINER xxx@qq.com</span><br><span class="line"><span class="comment"># 挂载任务服务路径</span></span><br><span class="line">VOLUME [<span class="string">"/usr/fin/MyFlaskTest"</span>, <span class="string">"/usr/fin/MyFlaskTest"</span>]</span><br><span class="line"><span class="comment"># 指定工作目录，保持跟挂载路径一致</span></span><br><span class="line">WORKDIR /usr/fin/MyFlaskTest</span><br><span class="line"><span class="comment"># Flask环境参数变量，可自定义变量</span></span><br><span class="line">ENV FLASK_ENV Dev</span><br><span class="line"><span class="comment"># ENV FLASK_DB_KEY 2019011418570114</span></span><br><span class="line">EXPOSE <span class="number">8888</span></span><br><span class="line"><span class="comment"># 将依赖包信息加入镜像</span></span><br><span class="line">COPY requirements.txt ./</span><br><span class="line"><span class="comment"># 安装依赖包</span></span><br><span class="line">RUN pip install -r requirements.txt</span><br><span class="line"><span class="comment"># 执行命令启动gunicorn</span></span><br><span class="line">CMD gunicorn app:app -b <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">8888</span> -w <span class="number">2</span> --preload</span><br></pre></td></tr></table></figure></p>
+<h2 id="创建镜像"><a href="#创建镜像" class="headerlink" title="创建镜像"></a>创建镜像</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">命令：</span><br><span class="line">sudo docker build -t myflask:mock -f dockerfile .</span><br></pre></td></tr></table></figure>
+<p>进入到服务器web应用目录下，执行创建镜像命令。实例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">[lcpubsudo@sz2<span class="number">-201</span><span class="number">-5</span>-centos124 MyFlaskTest]$ sudo docker build -t myflask:mock -f dockerfile .</span><br><span class="line">Sending build context to Docker daemon  <span class="number">58.88</span>kB</span><br><span class="line">Step <span class="number">1</span>/<span class="number">9</span> : FROM python:<span class="number">3.7</span><span class="number">.2</span></span><br><span class="line"> ---&gt; 2053ca75899e</span><br><span class="line">Step <span class="number">2</span>/<span class="number">9</span> : MAINTAINER xxx@qq.com</span><br><span class="line"> ---&gt; Running in e89ae5ecf2c2</span><br><span class="line">Removing intermediate container e89ae5ecf2c2</span><br><span class="line"> ---&gt; cfde4d21fb2e</span><br><span class="line">Step <span class="number">3</span>/<span class="number">9</span> : VOLUME [<span class="string">"/usr/fin/MyFlaskTest"</span>, <span class="string">"/usr/fin/MyFlaskTest"</span>]</span><br><span class="line"> ---&gt; Running in b44bb0683f25</span><br><span class="line">Removing intermediate container b44bb0683f25</span><br><span class="line"> ---&gt; 516a5e994884</span><br><span class="line">Step <span class="number">4</span>/<span class="number">9</span> : WORKDIR /usr/fin/MyFlaskTest</span><br><span class="line">Removing intermediate container cbcb02b683f2</span><br><span class="line"> ---&gt; 400d37be29f2</span><br><span class="line">Step <span class="number">5</span>/<span class="number">9</span> : ENV FLASK_ENV Dev</span><br><span class="line"> ---&gt; Running in 48419ca2d56e</span><br><span class="line">Removing intermediate container <span class="number">48419</span>ca2d56e</span><br><span class="line"> ---&gt; 66b7ef6d3a91</span><br><span class="line">Step <span class="number">6</span>/<span class="number">9</span> : EXPOSE <span class="number">8888</span></span><br><span class="line"> ---&gt; Running in cc536af2d0b1</span><br><span class="line">Removing intermediate container cc536af2d0b1</span><br><span class="line"> ---&gt; 4164ebe880ee</span><br><span class="line">Step <span class="number">7</span>/<span class="number">9</span> : COPY requirements.txt ./</span><br><span class="line"> ---&gt; fecb9ec8aa56</span><br><span class="line">Step <span class="number">8</span>/<span class="number">9</span> : RUN pip install -r requirements.txt</span><br><span class="line"> ---&gt; Running in 67a28a5f3b70</span><br><span class="line">Collecting Flask==<span class="number">1.1</span><span class="number">.1</span> (<span class="keyword">from</span> -r requirements.txt (line <span class="number">1</span>))</span><br><span class="line">  Downloading https://files.pythonhosted.org/packages/<span class="number">9</span>b/<span class="number">93</span>/<span class="number">628509</span>b8d5dc749656a9641f4caf13540e2cdec85276964ff8f43bbb1d3b/Flask<span class="number">-1.1</span><span class="number">.1</span>-py2.py3-none-any.whl (<span class="number">94</span>kB)</span><br><span class="line">Installing collected packages: click, itsdangerous, Werkzeug, MarkupSafe, Jinja2, Flask, SQLAlchemy, Flask-SQLAlchemy, idna, urllib3, certifi, chardet, requests, gunicorn, python-dotenv, marshmallow, environs, pymysql</span><br><span class="line">Successfully installed Flask<span class="number">-1.1</span><span class="number">.1</span> Flask-SQLAlchemy<span class="number">-2.3</span><span class="number">.2</span> Jinja2<span class="number">-2.11</span><span class="number">.2</span> MarkupSafe<span class="number">-1.1</span><span class="number">.1</span> SQLAlchemy<span class="number">-1.3</span><span class="number">.16</span> Werkzeug<span class="number">-1.0</span><span class="number">.1</span> certifi<span class="number">-2020.4</span><span class="number">.5</span><span class="number">.1</span> chardet<span class="number">-3.0</span><span class="number">.4</span> click<span class="number">-7.1</span><span class="number">.2</span> environs<span class="number">-4.1</span><span class="number">.0</span> gunicorn<span class="number">-19.9</span><span class="number">.0</span> idna<span class="number">-2.6</span> itsdangerous<span class="number">-1.1</span><span class="number">.0</span> marshmallow<span class="number">-3.5</span><span class="number">.2</span> pymysql<span class="number">-0.9</span><span class="number">.3</span> python-dotenv<span class="number">-0.13</span><span class="number">.0</span> requests<span class="number">-2.18</span><span class="number">.4</span> urllib3<span class="number">-1.22</span></span><br><span class="line">You are using pip version <span class="number">19.0</span><span class="number">.3</span>, however version <span class="number">20.1</span> <span class="keyword">is</span> available.</span><br><span class="line">You should consider upgrading via the <span class="string">'pip install --upgrade pip'</span> command.</span><br><span class="line">Removing intermediate container <span class="number">67</span>a28a5f3b70</span><br><span class="line"> ---&gt; 12c0eb2b3cdd</span><br><span class="line">Step <span class="number">9</span>/<span class="number">9</span> : CMD gunicorn app:app -b <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">8888</span> -w <span class="number">2</span> --preload</span><br><span class="line"> ---&gt; Running in 0123732d1732</span><br><span class="line">Removing intermediate container <span class="number">0123732</span>d1732</span><br><span class="line"> ---&gt; f48397a0f1ff</span><br><span class="line">Successfully built f48397a0f1ff</span><br><span class="line">Successfully tagged myflask:mock</span><br></pre></td></tr></table></figure>
+<h2 id="查看镜像"><a href="#查看镜像" class="headerlink" title="查看镜像"></a>查看镜像</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">命令：</span><br><span class="line">sudo docker images</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[lcpubsudo@sz2<span class="number">-201</span><span class="number">-5</span>-centos124 MyFlaskTest]$ sudo docker images</span><br><span class="line">REPOSITORY                      TAG                       IMAGE ID            CREATED             SIZE</span><br><span class="line">myflask                         mock                      f48397a0f1ff        <span class="number">3</span> minutes ago       <span class="number">953</span>MB</span><br></pre></td></tr></table></figure>
+<h2 id="创建和启动容器"><a href="#创建和启动容器" class="headerlink" title="创建和启动容器"></a>创建和启动容器</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">命令：</span><br><span class="line">sudo docker run -v /usr/fin/MyFlaskTest:/usr/fin/MyFlaskTest -d -p <span class="number">8888</span>:<span class="number">8888</span> myflask:mock</span><br></pre></td></tr></table></figure>
+<p>-d 为后台运行<br><br>-p 为指定宿主机端口，不是随机端口<br><br>-P 随机端口<br><br>-v 挂载目录，宿主机目录:容器目录，路径会自动创建<br></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[lcpubsudo@sz2<span class="number">-201</span><span class="number">-5</span>-centos124 MyFlaskTest]$ sudo docker run -v /usr/fin/MyFlaskTest:/usr/fin/MyFlaskTest -d -p <span class="number">8888</span>:<span class="number">8888</span> myflask:mock</span><br><span class="line"><span class="number">2</span>c801515b3bf686e3a1d4f7224576d27834140dd632ff679b2974dfbec16dfc3</span><br></pre></td></tr></table></figure>
+<h2 id="查看容器运行状态"><a href="#查看容器运行状态" class="headerlink" title="查看容器运行状态"></a>查看容器运行状态</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">命令：</span><br><span class="line">sudo docker ps -a</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[lcpubsudo@sz2<span class="number">-201</span><span class="number">-5</span>-centos124 MyFlaskTest]$ sudo docker ps -a</span><br><span class="line">CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                                                                                        NAMES</span><br><span class="line">2c801515b3bf        myflask:mock                 "/bin/sh -c 'gunicor…"   58 seconds ago      Up 57 seconds       0.0.0.0:8888-&gt;8888/tcp                                                                       stoic_curie</span><br></pre></td></tr></table></figure>
+<h2 id="查看容器日志"><a href="#查看容器日志" class="headerlink" title="查看容器日志"></a>查看容器日志</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">命令：</span><br><span class="line">sudo docker logs -f 容器id</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[lcpubsudo@sz2<span class="number">-201</span><span class="number">-5</span>-centos124 MyFlaskTest]$ sudo docker logs -f <span class="number">2</span>c801515b3bf</span><br><span class="line">[<span class="number">2020</span><span class="number">-05</span><span class="number">-06</span> <span class="number">09</span>:<span class="number">53</span>:<span class="number">19</span> +<span class="number">0000</span>] [<span class="number">6</span>] [INFO] Starting gunicorn <span class="number">19.9</span><span class="number">.0</span></span><br><span class="line">[<span class="number">2020</span><span class="number">-05</span><span class="number">-06</span> <span class="number">09</span>:<span class="number">53</span>:<span class="number">19</span> +<span class="number">0000</span>] [<span class="number">6</span>] [INFO] Listening at: http://<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">8888</span> (<span class="number">6</span>)</span><br><span class="line">[<span class="number">2020</span><span class="number">-05</span><span class="number">-06</span> <span class="number">09</span>:<span class="number">53</span>:<span class="number">19</span> +<span class="number">0000</span>] [<span class="number">6</span>] [INFO] Using worker: sync</span><br><span class="line">[<span class="number">2020</span><span class="number">-05</span><span class="number">-06</span> <span class="number">09</span>:<span class="number">53</span>:<span class="number">19</span> +<span class="number">0000</span>] [<span class="number">9</span>] [INFO] Booting worker <span class="keyword">with</span> pid: <span class="number">9</span></span><br><span class="line">[<span class="number">2020</span><span class="number">-05</span><span class="number">-06</span> <span class="number">09</span>:<span class="number">53</span>:<span class="number">19</span> +<span class="number">0000</span>] [<span class="number">10</span>] [INFO] Booting worker <span class="keyword">with</span> pid: <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<h2 id="其他docker命令"><a href="#其他docker命令" class="headerlink" title="其他docker命令"></a>其他docker命令</h2><ul>
+<li><strong>停止容器</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker stop 容器id</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>启动容器</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker start 容器id</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>更新容器内第三方库</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">第一步：</span><br><span class="line">sudo docker <span class="keyword">exec</span> -it 容器id /bin/bash</span><br><span class="line"></span><br><span class="line">第二步：</span><br><span class="line">pip install 第三方库</span><br><span class="line"></span><br><span class="line">第三步：</span><br><span class="line">exit</span><br><span class="line"></span><br><span class="line">第四步：</span><br><span class="line">sudo docker commit -m <span class="string">'更新描述'</span> 容器id vpaasthree</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>删除容器</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">先停止容器，再删除</span><br><span class="line">sudo docker rm 容器id</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>删除镜像</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi 镜像id</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>重启容器</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart 容器id</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>查看容器属性工作目录等</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspec 容器id</span><br></pre></td></tr></table></figure>
+<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><p>是不是很简单呀，快去实践一下吧~！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/环境/" rel="tag"># 环境</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/31/入门&进阶python装饰器/" rel="next" title="入门&进阶python装饰器">
+                <i class="fa fa-chevron-left"></i> 入门&进阶python装饰器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Ningxw" />
+            
+              <p class="site-author-name" itemprop="name">Ningxw</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker部署前"><span class="nav-number">2.</span> <span class="nav-text">docker部署前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建镜像"><span class="nav-number">3.</span> <span class="nav-text">创建镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看镜像"><span class="nav-number">4.</span> <span class="nav-text">查看镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建和启动容器"><span class="nav-number">5.</span> <span class="nav-text">创建和启动容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看容器运行状态"><span class="nav-number">6.</span> <span class="nav-text">查看容器运行状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看容器日志"><span class="nav-number">7.</span> <span class="nav-text">查看容器日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他docker命令"><span class="nav-number">8.</span> <span class="nav-text">其他docker命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结束"><span class="nav-number">8.1.</span> <span class="nav-text">结束</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ningxw</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = '';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'WC7T2lOHKOiT38n2BRMqQ4YD-gzGzoHsz',
+        appKey: 'do5cmS6Kl4OrS8J4Jd1SBu0p',
+        placeholder: 'ヾﾉ≧∀≦)o 留个言吧~',
+        avatar:'/images/avatar.jpg',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("WC7T2lOHKOiT38n2BRMqQ4YD-gzGzoHsz", "do5cmS6Kl4OrS8J4Jd1SBu0p");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
