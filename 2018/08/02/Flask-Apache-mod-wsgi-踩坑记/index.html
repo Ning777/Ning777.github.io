@@ -93,29 +93,29 @@
 <meta name="keywords" content="解决方法,环境">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flask-Apache-mod-wsgi-踩坑记">
-<meta property="og:url" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/index.html">
+<meta property="og:url" content="https://Ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/index.html">
 <meta property="og:site_name" content="宁大大噢耶">
 <meta property="og:description" content="现在的心情是，给我一个打火机我能把整个地球烧了！！  前言上段时间自己无聊用flask框架弄了一个页面出来（也就是增删改查外加excel导入，并无技术含量！），又很无聊的搜到一篇大致意思是“骚年何不把你的项目部署到服务器上让更多人看到你装逼”的文章，心想：没错！我要做这种装逼的骚年！于是马上动手谷歌，马上开工！但万事怎么就都开头难呢，一个坑接着一个坑呢~ 不，我不死心，我要把坑填平~以下就请观赏“">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/1.png">
-<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/2.png">
-<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/3.png">
-<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/4.png">
-<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/5.png">
-<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/6.png">
-<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/7.png">
-<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/8.png">
-<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/9.png">
-<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/10.png">
-<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/11.png">
-<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/12.png">
-<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/13.png">
-<meta property="og:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/14.png">
+<meta property="og:image" content="https://ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/1.png">
+<meta property="og:image" content="https://ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/2.png">
+<meta property="og:image" content="https://ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/3.png">
+<meta property="og:image" content="https://ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/4.png">
+<meta property="og:image" content="https://ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/5.png">
+<meta property="og:image" content="https://ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/6.png">
+<meta property="og:image" content="https://ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/7.png">
+<meta property="og:image" content="https://ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/8.png">
+<meta property="og:image" content="https://ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/9.png">
+<meta property="og:image" content="https://ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/10.png">
+<meta property="og:image" content="https://ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/11.png">
+<meta property="og:image" content="https://ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/12.png">
+<meta property="og:image" content="https://ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/13.png">
+<meta property="og:image" content="https://ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/14.png">
 <meta property="og:updated_time" content="2018-08-02T11:35:18.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flask-Apache-mod-wsgi-踩坑记">
 <meta name="twitter:description" content="现在的心情是，给我一个打火机我能把整个地球烧了！！  前言上段时间自己无聊用flask框架弄了一个页面出来（也就是增删改查外加excel导入，并无技术含量！），又很无聊的搜到一篇大致意思是“骚年何不把你的项目部署到服务器上让更多人看到你装逼”的文章，心想：没错！我要做这种装逼的骚年！于是马上动手谷歌，马上开工！但万事怎么就都开头难呢，一个坑接着一个坑呢~ 不，我不死心，我要把坑填平~以下就请观赏“">
-<meta name="twitter:image" content="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/1.png">
+<meta name="twitter:image" content="https://ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/1.png">
 
 
 
@@ -145,7 +145,7 @@
 
 
 
-  <link rel="canonical" href="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/"/>
+  <link rel="canonical" href="https://Ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/"/>
 
 
 
@@ -186,7 +186,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">一个测试渣渣最后的挣扎~:)</p>
+        <p class="site-subtitle">来了，老弟~</p>
       
   </div>
 
@@ -278,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/">
+    <link itemprop="mainEntityOfPage" href="https://Ningxw.github.io/2018/08/02/Flask-Apache-mod-wsgi-踩坑记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ningxw">
@@ -573,7 +573,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
