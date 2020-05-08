@@ -93,16 +93,16 @@
 <meta name="keywords" content="python,接口测试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python调用JAVA包-从入门到放弃">
-<meta property="og:url" content="https://Ningxw.github.io/2018/08/21/Python调用JAVA包-从入门到放弃/index.html">
+<meta property="og:url" content="https://ning777.github.io/2018/08/21/Python调用JAVA包-从入门到放弃/index.html">
 <meta property="og:site_name" content="宁大大噢耶">
 <meta property="og:description" content="前言近段时间在做接口的时候就碰上了需要用到Java包内函数以作请求加解密，由于我python和java都贼差，算法看不懂，翻译不出同等作用的python代码，所以不得不向Java屈服（哭泣ing..）虽无法否认Java在处理很多问题上确实比Python要好那么一丢丢，但我们Python也很强呀，身为胶水语言，没有什么是我们Python做不了的事呢~（喂，你很拽哦！）以下，真的不来围观吗~~">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ningxw.github.io/2018/08/21/Python调用JAVA包-从入门到放弃/1.png">
+<meta property="og:image" content="https://ning777.github.io/2018/08/21/Python调用JAVA包-从入门到放弃/1.png">
 <meta property="og:updated_time" content="2019-02-14T05:55:03.456Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python调用JAVA包-从入门到放弃">
 <meta name="twitter:description" content="前言近段时间在做接口的时候就碰上了需要用到Java包内函数以作请求加解密，由于我python和java都贼差，算法看不懂，翻译不出同等作用的python代码，所以不得不向Java屈服（哭泣ing..）虽无法否认Java在处理很多问题上确实比Python要好那么一丢丢，但我们Python也很强呀，身为胶水语言，没有什么是我们Python做不了的事呢~（喂，你很拽哦！）以下，真的不来围观吗~~">
-<meta name="twitter:image" content="https://ningxw.github.io/2018/08/21/Python调用JAVA包-从入门到放弃/1.png">
+<meta name="twitter:image" content="https://ning777.github.io/2018/08/21/Python调用JAVA包-从入门到放弃/1.png">
 
 
 
@@ -132,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="https://Ningxw.github.io/2018/08/21/Python调用JAVA包-从入门到放弃/"/>
+  <link rel="canonical" href="https://ning777.github.io/2018/08/21/Python调用JAVA包-从入门到放弃/"/>
 
 
 
@@ -173,7 +173,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">来了，老弟~</p>
+        <p class="site-subtitle">行走江湖多年的测试小能手 ^.^</p>
       
   </div>
 
@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Ningxw.github.io/2018/08/21/Python调用JAVA包-从入门到放弃/">
+    <link itemprop="mainEntityOfPage" href="https://ning777.github.io/2018/08/21/Python调用JAVA包-从入门到放弃/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ningxw">
@@ -398,14 +398,14 @@
 <li><strong>环境准备</strong></li>
 </ul>
 <p>我的环境配置是：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Win <span class="number">7</span>/<span class="number">10</span> </span><br><span class="line">Python <span class="number">3.6</span> (<span class="number">64</span> bit） </span><br><span class="line">Java：jdk1<span class="number">.8</span><span class="number">.0</span>_181 (<span class="number">64</span> bit)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Win 7/10 </span><br><span class="line">Python 3.6 (64 bit） </span><br><span class="line">Java：jdk1.8.0_181 (64 bit)</span><br></pre></td></tr></table></figure>
 <p><strong>PS：python的环境一定要跟java的环境要一致，不然调用jvm时会报内存泄露哟~</strong></p>
 <ul>
 <li><strong>安装jpype库</strong></li>
 </ul>
 <p>使用<strong>pip install jpype1</strong>进行安装，运行后你会发现，蹭蹭蹭，报错啦！</p>
 <p><img src="/2018/08/21/Python调用JAVA包-从入门到放弃/1.png" alt=""></p>
-<p>根据错误提示，是缺少了VS C++插件，我在 <a href="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-%E8%B8%A9%E5%9D%91%E8%AE%B0/" target="_blank" rel="noopener">Flask-Apache-mod-wsgi-踩坑记</a> 这篇博客上有提到插件的地址，在这里再放一下地址 - &gt; <a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=48145" target="_blank" rel="noopener">Visual C++编译器下载地址</a> 记得给我点赞哟嘻嘻~</p>
+<p>根据错误提示，是缺少了VS C++插件，我在 <a href="https://ning777.github.io/2018/08/02/Flask-Apache-mod-wsgi-%E8%B8%A9%E5%9D%91%E8%AE%B0/">Flask-Apache-mod-wsgi-踩坑记</a> 这篇博客上有提到插件的地址，在这里再放一下地址 - &gt; <a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=48145" target="_blank" rel="noopener">Visual C++编译器下载地址</a> 记得给我点赞哟嘻嘻~</p>
 <ul>
 <li><strong>再次安装jpype</strong></li>
 </ul>
@@ -416,11 +416,11 @@
 <p>3）成功安装后，尝试运行简单的调用jvm脚本，发现还是有报错<br>ImportError: numpy.core.multiarray failed to import</p>
 <p>4）通过报错可判断可能是缺少了numpy库，再次安装<strong>pip install numpy</strong>， 安装过慢可以尝试用<strong>pip install -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a> numpy</strong></p>
 <p>进行安装，稍等片刻后，我们再运行调用JVM的脚本</p>
-<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import jpype</span><br><span class="line">jvmPath = jpype.getDefaultJVMPath()    # 默认的JVM路径</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(jvmPath)</span></span></span><br><span class="line"><span class="function"><span class="title">jpype</span>.<span class="title">startJVM</span><span class="params">(jvmPath)</span></span></span><br><span class="line"><span class="function"><span class="title">jpype</span>.<span class="title">java</span>.<span class="title">lang</span>.S<span class="title">ystem</span>.<span class="title">out</span>.<span class="title">println</span><span class="params">(<span class="string">"hello world!"</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">jpype</span>.<span class="title">java</span>.<span class="title">lang</span>.S<span class="title">ystem</span>.<span class="title">out</span>.<span class="title">println</span><span class="params">(<span class="string">"I hate you!"</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">jpype</span>.<span class="title">shutdownJVM</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import jpype</span><br><span class="line">jvmPath = jpype.getDefaultJVMPath()    # 默认的JVM路径</span><br><span class="line">print(jvmPath)</span><br><span class="line">jpype.startJVM(jvmPath)</span><br><span class="line">jpype.java.lang.System.out.println(&quot;hello world!&quot;)</span><br><span class="line">jpype.java.lang.System.out.println(&quot;I hate you!&quot;)</span><br><span class="line"></span><br><span class="line">jpype.shutdownJVM()</span><br></pre></td></tr></table></figure>
 <p>此时运行后，后台没有报错，恭喜啦啦啦你终于成功安装了jpype，然后我们就可以愉快的玩耍了~~~</p>
 <p>（ps:如果还是有报错，大家就自行百度相应的报错找解决方法啦，恕我无能为力啦~）</p>
 <h2 id="Jpype运用"><a href="#Jpype运用" class="headerlink" title="Jpype运用"></a>Jpype运用</h2><p>其实到了这里我都感觉自己不知道可以说啥了，毕竟网上描述jpype使用的教程实在是太多了，而且非常的详细，我就不多说啦，在这里贴下我的实际运用代码，大家可以自行参考下哦~</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">from jpype import *   <span class="comment">#引入jpype</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">All_get</span>(<span class="title">object</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        jvmpath = getDefaultJVMPath()    <span class="comment">#获取默认的JVM路径</span></span><br><span class="line">        jarpath = [<span class="string">"E:\Java_jar\java-utils.jar"</span>]   <span class="comment"># 你需要调用的jar包路径</span></span><br><span class="line">        jvmarg = <span class="string">"-Djava.class.path=&#123;&#125;"</span>.format(<span class="string">":"</span>.join(jarpath))  <span class="comment"># jvm启动参数，调用第三方java拓展包</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isJVMStarted()<span class="symbol">:</span></span><br><span class="line">            startJVM(jvmpath, jvmarg)     <span class="comment"># 启动JVM虚拟机</span></span><br><span class="line">        <span class="keyword">self</span>.aesutils = JClass(<span class="string">'com.cryption.aes.AESUtils'</span>)   <span class="comment">#实例化对象</span></span><br><span class="line">        <span class="keyword">self</span>.rsautils = JClass(<span class="string">'com.cryption.rsa.RSAUtils'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dec_aes</span><span class="params">(<span class="keyword">self</span>, data, key)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.aes = <span class="keyword">self</span>.aesutils.decrypt(data, key)     <span class="comment"># 调用java对象的方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.aes</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dec_rsa</span><span class="params">(<span class="keyword">self</span>, data, key)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.rsa = <span class="keyword">self</span>.rsautils.decrypt(data, key)  <span class="comment"># 调用java对象的方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.rsa</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dec_sign</span><span class="params">(<span class="keyword">self</span>, content_re, sign_re, org_pub)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.sign_dec = <span class="keyword">self</span>.rsautils.checkSign(content_re, sign_re, org_pub)  <span class="comment"># 调用java对象的方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.sign_dec</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name_<span class="number">_</span> == <span class="string">'__main__'</span><span class="symbol">:</span></span><br><span class="line">    All_get()</span><br><span class="line">    shutdownJVM()     <span class="comment"># 关闭JVM虚拟机</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">from jpype import *   #引入jpype</span><br><span class="line"></span><br><span class="line">class All_get(object):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        jvmpath = getDefaultJVMPath()    #获取默认的JVM路径</span><br><span class="line">        jarpath = [&quot;E:\Java_jar\java-utils.jar&quot;]   # 你需要调用的jar包路径</span><br><span class="line">        jvmarg = &quot;-Djava.class.path=&#123;&#125;&quot;.format(&quot;:&quot;.join(jarpath))  # jvm启动参数，调用第三方java拓展包</span><br><span class="line">        if not isJVMStarted():</span><br><span class="line">            startJVM(jvmpath, jvmarg)     # 启动JVM虚拟机</span><br><span class="line">        self.aesutils = JClass(&apos;com.cryption.aes.AESUtils&apos;)   #实例化对象</span><br><span class="line">        self.rsautils = JClass(&apos;com.cryption.rsa.RSAUtils&apos;)</span><br><span class="line"></span><br><span class="line">    def dec_aes(self, data, key):</span><br><span class="line">        self.aes = self.aesutils.decrypt(data, key)     # 调用java对象的方法</span><br><span class="line">        return self.aes</span><br><span class="line"></span><br><span class="line">    def dec_rsa(self, data, key):</span><br><span class="line">        self.rsa = self.rsautils.decrypt(data, key)  # 调用java对象的方法</span><br><span class="line">        return self.rsa</span><br><span class="line"></span><br><span class="line">    def dec_sign(self, content_re, sign_re, org_pub):</span><br><span class="line">        self.sign_dec = self.rsautils.checkSign(content_re, sign_re, org_pub)  # 调用java对象的方法</span><br><span class="line">        return self.sign_dec</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    All_get()</span><br><span class="line">    shutdownJVM()     # 关闭JVM虚拟机</span><br></pre></td></tr></table></figure>
 <p>以上就是我常用的代码啦，是不是很简单呢，哈哈哈，主要还是安装过程比较繁琐，要耐心哟~</p>
 <h2 id="抛弃Jpype"><a href="#抛弃Jpype" class="headerlink" title="抛弃Jpype"></a>抛弃Jpype</h2><p>为啥要抛弃呢？这个问题问得好，陈独秀同学请你坐下~</p>
 <p>虽说jpype可以很方便的让我们调用java包方法，但每一次的调用都要启动一次JVM，非常的耗内存和降低了运行效率，因此如果能用python实现java的方法的话，这样就是最好的啦，同时锻炼两种语言能力哟~</p>
@@ -592,6 +592,24 @@
 
           
           
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://uniquestar88.github.io/" title="uniquestar88" target="_blank">uniquestar88</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://debugtalk.com/" title="debugtalk" target="_blank">debugtalk</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
 
           
 
@@ -651,6 +669,17 @@
 
 
 
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+#<span id="busuanzi_container_site_uv" style='display:none'>
+    #有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+#</span>
+</div>
 
         
 
