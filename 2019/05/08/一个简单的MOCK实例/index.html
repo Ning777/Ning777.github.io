@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "391fe96b"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,代码," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言手把手教你如何创建一个简约优美的MOCK框架实例~速戳！">
+<meta name="keywords" content="python,代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个简单的MOCK实例">
+<meta property="og:url" content="https://ning777.github.io/2019/05/08/一个简单的MOCK实例/index.html">
+<meta property="og:site_name" content="宁大大噢耶">
+<meta property="og:description" content="前言手把手教你如何创建一个简约优美的MOCK框架实例~速戳！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-05-12T02:38:59.453Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个简单的MOCK实例">
+<meta name="twitter:description" content="前言手把手教你如何创建一个简约优美的MOCK框架实例~速戳！">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ning777.github.io/2019/05/08/一个简单的MOCK实例/"/>
+
+
+
+
+
+  <title>一个简单的MOCK实例 | 宁大大噢耶</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">宁大大噢耶</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">行走江湖多年的测试小能手 ^.^</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ning777.github.io/2019/05/08/一个简单的MOCK实例/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ningxw">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宁大大噢耶">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一个简单的MOCK实例</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-08T10:26:29+08:00">
+                2019-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python基础/" itemprop="url" rel="index">
+                    <span itemprop="name">python基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/08/一个简单的MOCK实例/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/08/一个简单的MOCK实例/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/05/08/一个简单的MOCK实例/" class="leancloud_visitors" data-flag-title="一个简单的MOCK实例">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>手把手教你如何创建一个简约优美的MOCK框架实例~速戳！</p>
+<a id="more"></a>
+<h2 id="创建一个flask项目"><a href="#创建一个flask项目" class="headerlink" title="创建一个flask项目"></a>创建一个flask项目</h2><p>我们可以从pycharm编辑器中直接新建一个flask项目，再添加几个后续要用到的文件，结构初始化如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">MyFlaskTest</span><br><span class="line"> -flaskr                    <span class="comment">#主程序</span></span><br><span class="line">    -mock_tests             </span><br><span class="line">       -__init__.py        </span><br><span class="line">       -mock1.py            <span class="comment">#mock实例文件</span></span><br><span class="line">    -__init__.py </span><br><span class="line"> -static</span><br><span class="line"> -templates                 <span class="comment">#存储HTML文件</span></span><br><span class="line"> -app.py                    <span class="comment">#程序启动文件</span></span><br><span class="line"> -config.py                 <span class="comment">#配置文件</span></span><br><span class="line"> -extensions.py             <span class="comment">#扩展类实例化</span></span><br></pre></td></tr></table></figure></p>
+<p>其中app.py文件已经自动创建好一个实例，但默认配置显得不够高大上。后续如果想为实例分配不同的环境配置和更清晰的控制程序，我们可以引入工厂函数的概念。</p>
+<h2 id="工厂函数"><a href="#工厂函数" class="headerlink" title="工厂函数"></a>工厂函数</h2><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>使用工厂函数来创建程序实例，需要使用到蓝图。这个工厂函数用个大白话来说，就是封装一个名为create_app()的函数,这个函数返回程序实例app，使用这个函数就可以在任何地方去创建程序实例。另外借助工厂函数，我们还可以扩展加载和初始化配置，使得创建的对象操作可以分离到单独的模块，减少循环依赖的发生。</p>
+<h4 id="工厂函数的使用"><a href="#工厂函数的使用" class="headerlink" title="工厂函数的使用"></a>工厂函数的使用</h4><p>在工程文件下编辑<strong>init</strong>.py文件，代码内容如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># flaskr/__init__.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> config <span class="keyword">import</span> EnvConfig       <span class="comment">#引入环境配置</span></span><br><span class="line"><span class="keyword">from</span> .mock_tests <span class="keyword">import</span> mockTest   <span class="comment">#引入蓝图实例</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_app</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="comment"># 实例化app</span></span><br><span class="line">    app = Flask(__name__, template_folder=<span class="string">'templates'</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 获取配置</span></span><br><span class="line">    app.config.from_object(EnvConfig[name])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 注册蓝图，url_prefix使得被注册的路由URL自动带上前缀</span></span><br><span class="line">    app.register_blueprint(mockTest, url_prefix=<span class="string">'/mockTest'</span>)</span><br><span class="line">    <span class="keyword">return</span> app</span><br></pre></td></tr></table></figure>
+<p>工厂函数接受配置名作为参数，返回创建好的程序实例，加载相关配置。工厂函数一般在程序包的构造文件中创建，你也可以在程序包内新建的模块来存放，比如factory.py或是app.py。</p>
+<h4 id="扩展实例"><a href="#扩展实例" class="headerlink" title="扩展实例"></a>扩展实例</h4><p>为了更好的运用起工厂函数和完成扩展的初始化操作，我们需要在实例化扩展类时传入程序实例。但使用工厂函数时，并没有一个创建好的程序实例可以导入。如果我们把实例化操作放到工厂函数中，那么我们就没有一个全局的扩展对象可以使用，比如表示数据库的db对象。<br><br><br>为了解决这个问题，大部分扩展都提供了一个init_app()方法来支持分离扩展的实例化和初始化操作。现在我们仍然像往常一样初始化扩展类，但是并不传入程序实例。这时扩展类实例化的工作可以集中放到extension.py脚本中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#MyFlaskTest/extension.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask_bootstrap <span class="keyword">import</span> Bootstrap</span><br><span class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy</span><br><span class="line"><span class="keyword">from</span> flask_mail_import Mail</span><br><span class="line"></span><br><span class="line">bootstrap = Bootstrap()</span><br><span class="line">db = SQLAlchemy()</span><br><span class="line">mail = Mail()</span><br></pre></td></tr></table></figure>
+<p>现在，当我们需要在程序实例中使用扩展对象时，直接从这个extensions模块导入即可。在工厂函数中，我们导入所有扩展对象，并对其调用init_app()方法，传入程序实例完成初始化操作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># flaskr/__init__.py</span></span><br><span class="line">......</span><br><span class="line"><span class="keyword">from</span> .extensions <span class="keyword">import</span> bootstrap, db, mail</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_app</span><span class="params">(name)</span>:</span></span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">	bootstrap.init_app(app)</span><br><span class="line">    db.init_app(app)</span><br><span class="line">    mail.init_app(app)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> app</span><br></pre></td></tr></table></figure>
+<h2 id="创建蓝图"><a href="#创建蓝图" class="headerlink" title="创建蓝图"></a>创建蓝图</h2><h4 id="Blueprint概念"><a href="#Blueprint概念" class="headerlink" title="Blueprint概念"></a>Blueprint概念</h4><p>简单来说，Blueprint 是一个存储操作方法的容器，这些操作在这个Blueprint 被注册到一个应用之后就可以被调用，Flask 可以通过Blueprint来组织URL以及处理请求。 Flask使用Blueprint让应用实现模块化，在Flask中，Blueprint具有如下属性：</p>
+<ul>
+<li>一个应用可以具有多个Blueprint</li>
+<li>可以将一个Blueprint注册到任何一个未使用的URL下比如 “/”、“/sample”或者子域名</li>
+<li>在一个应用中，一个模块可以注册多次</li>
+<li>Blueprint可以单独具有自己的模板、静态文件或者其它的通用操作方法，它并不是必须要实现应用的视图和函数的</li>
+<li>在一个应用初始化时，就应该要注册需要使用的Blueprint</li>
+<li>一个Blueprint并不是一个完整的应用，它不能独立于应用运行，而必须要注册到某一个应用中。</li>
+</ul>
+<h4 id="蓝图的使用"><a href="#蓝图的使用" class="headerlink" title="蓝图的使用"></a>蓝图的使用</h4><p>在mock_tests文件下编辑<strong>init</strong>.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#mock_tests/__init__.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Blueprint</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个蓝图实例，名字叫mockTest</span></span><br><span class="line">mockTest = Blueprint(<span class="string">'mockTest'</span>, __name__)</span><br></pre></td></tr></table></figure></p>
+<h2 id="创建一个mock程序文件"><a href="#创建一个mock程序文件" class="headerlink" title="创建一个mock程序文件"></a>创建一个mock程序文件</h2><p>接下来就非常简单了，想要模拟什么接口就写什么。在mock_tests文件下创建编辑mock1.py文件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mock_tests/mock1.py</span></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> render_template   <span class="comment">#引入HTML模板文件</span></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> mockTest              <span class="comment">#引入mockTest蓝图</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@mockTest.route('/')             #使用mockTest标记</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello_world</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Hello World!'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@mockTest.route('/hey/&lt;name&gt;')   #使用mockTest标记</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_name</span><span class="params">(name=None)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">'hey.html'</span>, name=name)</span><br></pre></td></tr></table></figure>
+<p>这样就可以统一使用一个蓝图组件下的不同mock文件，使得文件具有相同的属性。</p>
+<h2 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h2><p>本案例配置文件内容比较简单，如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#flask/config.py</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义测试环境</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestConfig</span>:</span></span><br><span class="line">    DEBUG = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义生产环境</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DevConfig</span>:</span></span><br><span class="line">    DEBUG = <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">EnvConfig = &#123;</span><br><span class="line">    <span class="string">'Test'</span>: TestConfig,</span><br><span class="line">    <span class="string">'Dev'</span>: DevConfig</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置文件可以使用自带参数，也可以自定义环境参数，配置灵活简单。之后还可以配合服务部署做环境配置。送上一份配置参数参考：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">'DEBUG'</span>: <span class="keyword">False</span>,    <span class="comment"># 是否开启Debug模式</span></span><br><span class="line">    <span class="string">'TESTING'</span>: <span class="keyword">False</span>,  <span class="comment"># 是否开启测试模式</span></span><br><span class="line">    <span class="string">'PROPAGATE_EXCEPTIONS'</span>: <span class="keyword">None</span>,  <span class="comment"># 异常传播(是否在控制台打印LOG) 当Debug或者testing开启后,自动为True</span></span><br><span class="line">    <span class="string">'PRESERVE_CONTEXT_ON_EXCEPTION'</span>: <span class="keyword">None</span>,  <span class="comment"># 一两句话说不清楚,一般不用它</span></span><br><span class="line">    <span class="string">'SECRET_KEY'</span>: <span class="keyword">None</span>,  <span class="comment"># 之前遇到过,在启用Session的时候,一定要有它</span></span><br><span class="line">    <span class="string">'PERMANENT_SESSION_LIFETIME'</span>: <span class="number">31</span>,  <span class="comment"># days , Session的生命周期(天)默认31天</span></span><br><span class="line">    <span class="string">'USE_X_SENDFILE'</span>: <span class="keyword">False</span>,  <span class="comment"># 是否弃用 x_sendfile</span></span><br><span class="line">    <span class="string">'LOGGER_NAME'</span>: <span class="keyword">None</span>,  <span class="comment"># 日志记录器的名称</span></span><br><span class="line">    <span class="string">'LOGGER_HANDLER_POLICY'</span>: <span class="string">'always'</span>,</span><br><span class="line">    <span class="string">'SERVER_NAME'</span>: <span class="keyword">None</span>,  <span class="comment"># 服务访问域名</span></span><br><span class="line">    <span class="string">'APPLICATION_ROOT'</span>: <span class="keyword">None</span>,  <span class="comment"># 项目的完整路径</span></span><br><span class="line">    <span class="string">'SESSION_COOKIE_NAME'</span>: <span class="string">'session'</span>,  <span class="comment"># 在cookies中存放session加密字符串的名字</span></span><br><span class="line">    <span class="string">'SESSION_COOKIE_DOMAIN'</span>: <span class="keyword">None</span>,  <span class="comment"># 在哪个域名下会产生session记录在cookies中</span></span><br><span class="line">    <span class="string">'SESSION_COOKIE_PATH'</span>: <span class="keyword">None</span>,  <span class="comment"># cookies的路径</span></span><br><span class="line">    <span class="string">'SESSION_COOKIE_HTTPONLY'</span>: <span class="keyword">True</span>,  <span class="comment"># 控制 cookie 是否应被设置 httponly 的标志，</span></span><br><span class="line">    <span class="string">'SESSION_COOKIE_SECURE'</span>: <span class="keyword">False</span>,  <span class="comment"># 控制 cookie 是否应被设置安全标志</span></span><br><span class="line">    <span class="string">'SESSION_REFRESH_EACH_REQUEST'</span>: <span class="keyword">True</span>,  <span class="comment"># 这个标志控制永久会话如何刷新</span></span><br><span class="line">    <span class="string">'MAX_CONTENT_LENGTH'</span>: <span class="keyword">None</span>,  <span class="comment"># 如果设置为字节数， Flask 会拒绝内容长度大于此值的请求进入，并返回一个 413 状态码</span></span><br><span class="line">    <span class="string">'SEND_FILE_MAX_AGE_DEFAULT'</span>: <span class="number">12</span>,  <span class="comment"># hours 默认缓存控制的最大期限</span></span><br><span class="line">    <span class="string">'TRAP_BAD_REQUEST_ERRORS'</span>: <span class="keyword">False</span>,</span><br><span class="line">    <span class="comment"># 如果这个值被设置为 True ，Flask不会执行 HTTP 异常的错误处理，而是像对待其它异常一样，</span></span><br><span class="line">    <span class="comment"># 通过异常栈让它冒泡地抛出。这对于需要找出 HTTP 异常源头的可怕调试情形是有用的。</span></span><br><span class="line">    <span class="string">'TRAP_HTTP_EXCEPTIONS'</span>: <span class="keyword">False</span>,</span><br><span class="line">    <span class="comment"># Werkzeug 处理请求中的特定数据的内部数据结构会抛出同样也是“错误的请求”异常的特殊的 key errors 。</span></span><br><span class="line">    <span class="comment"># 同样地，为了保持一致，许多操作可以显式地抛出 BadRequest 异常。</span></span><br><span class="line">    <span class="comment"># 因为在调试中，你希望准确地找出异常的原因，这个设置用于在这些情形下调试。</span></span><br><span class="line">    <span class="comment"># 如果这个值被设置为 True ，你只会得到常规的回溯。</span></span><br><span class="line">    <span class="string">'EXPLAIN_TEMPLATE_LOADING'</span>: <span class="keyword">False</span>,</span><br><span class="line">    <span class="string">'PREFERRED_URL_SCHEME'</span>: <span class="string">'http'</span>,  <span class="comment"># 生成URL的时候如果没有可用的 URL 模式话将使用这个值</span></span><br><span class="line">    <span class="string">'JSON_AS_ASCII'</span>: <span class="keyword">True</span>,</span><br><span class="line">    <span class="comment"># 默认情况下 Flask 使用 ascii 编码来序列化对象。如果这个值被设置为 False ，</span></span><br><span class="line">    <span class="comment"># Flask不会将其编码为 ASCII，并且按原样输出，返回它的 unicode 字符串。</span></span><br><span class="line">    <span class="comment"># 比如 jsonfiy 会自动地采用 utf-8 来编码它然后才进行传输。</span></span><br><span class="line">    <span class="string">'JSON_SORT_KEYS'</span>: <span class="keyword">True</span>,</span><br><span class="line">    <span class="comment">#默认情况下 Flask 按照 JSON 对象的键的顺序来序来序列化它。</span></span><br><span class="line">    <span class="comment"># 这样做是为了确保键的顺序不会受到字典的哈希种子的影响，从而返回的值每次都是一致的，不会造成无用的额外 HTTP 缓存。</span></span><br><span class="line">    <span class="comment"># 你可以通过修改这个配置的值来覆盖默认的操作。但这是不被推荐的做法因为这个默认的行为可能会给你在性能的代价上带来改善。</span></span><br><span class="line">    <span class="string">'JSONIFY_PRETTYPRINT_REGULAR'</span>: <span class="keyword">True</span>,</span><br><span class="line">    <span class="string">'JSONIFY_MIMETYPE'</span>: <span class="string">'application/json'</span>,</span><br><span class="line">    <span class="string">'TEMPLATES_AUTO_RELOAD'</span>: <span class="keyword">None</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="修改app-py文件"><a href="#修改app-py文件" class="headerlink" title="修改app.py文件"></a>修改app.py文件</h2><p>因为使用到工厂函数，所以需要修改下app.py文件，代码简单直观。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># flaskr/app.py</span></span><br><span class="line"><span class="keyword">from</span> flaskr <span class="keyword">import</span> create_app   <span class="comment">#引入工厂函数</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">app = create_app(os.getenv(<span class="string">'FLASK_ENV'</span>) <span class="keyword">or</span> <span class="string">'Test'</span>)  <span class="comment">#获取环境配置信息</span></span><br><span class="line">app.app_context().push()    <span class="comment">#加载配置</span></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
+<h2 id="启动程序"><a href="#启动程序" class="headerlink" title="启动程序"></a>启动程序</h2><p>当使用flask run命令启动程序时，Flask的自动发现程序实例机制还包含另一种行为：flask会自动从环境变量FLASK_APP的值定义的模块中寻找名称为create_app()或make_app()的工厂函数，自动调用工厂函数创建程序实例并运行。本案例我们是将工厂函数放在app.py中调用，所以我们可以直接用python app.py来直接运行程序，如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(base) E:\MyFlaskTest&gt;python app.py</span><br><span class="line"> * Serving Flask app <span class="string">"flaskr"</span> (lazy loading)</span><br><span class="line"> * Environment: production</span><br><span class="line">   WARNING: This <span class="keyword">is</span> a development server. Do <span class="keyword">not</span> use it <span class="keyword">in</span> a production deployment.</span><br><span class="line">   Use a production WSGI server instead.</span><br><span class="line"> * Debug mode: on</span><br><span class="line"> * Restarting <span class="keyword">with</span> stat</span><br><span class="line"> * Debugger <span class="keyword">is</span> active!</span><br><span class="line"> * Debugger PIN: <span class="number">279</span><span class="number">-000</span><span class="number">-282</span></span><br><span class="line"> * Running on http://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5000</span>/ (Press CTRL+C to quit)</span><br></pre></td></tr></table></figure>
+<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>到这里就结束了，同学们可以自行调试，按照工作需要自行添加mock内容。搞定了别忘了来给我点个赞哦，比心！<br><br><br><br><br>参考文章：<br><br><a href="https://dormousehole.readthedocs.io/en/latest/" target="_blank" rel="noopener">flask官方中文文档</a>   <br><br><a href="https://www.cnblogs.com/xiaxiaoxu/p/10810095.html" target="_blank" rel="noopener">flask实战-个人博客-使用工厂函数创建程序实例</a> </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/代码/" rel="tag"># 代码</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/31/入门&进阶python装饰器/" rel="next" title="入门&进阶python装饰器">
+                <i class="fa fa-chevron-left"></i> 入门&进阶python装饰器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/06/docker部署web应用实践分享/" rel="prev" title="docker部署web应用实践分享">
+                docker部署web应用实践分享 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Ningxw" />
+            
+              <p class="site-author-name" itemprop="name">Ningxw</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://uniquestar88.github.io/" title="uniquestar88" target="_blank">uniquestar88</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://debugtalk.com/" title="debugtalk" target="_blank">debugtalk</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个flask项目"><span class="nav-number">2.</span> <span class="nav-text">创建一个flask项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂函数"><span class="nav-number">3.</span> <span class="nav-text">工厂函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">3.0.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工厂函数的使用"><span class="nav-number">3.0.2.</span> <span class="nav-text">工厂函数的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展实例"><span class="nav-number">3.0.3.</span> <span class="nav-text">扩展实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建蓝图"><span class="nav-number">4.</span> <span class="nav-text">创建蓝图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Blueprint概念"><span class="nav-number">4.0.1.</span> <span class="nav-text">Blueprint概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#蓝图的使用"><span class="nav-number">4.0.2.</span> <span class="nav-text">蓝图的使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个mock程序文件"><span class="nav-number">5.</span> <span class="nav-text">创建一个mock程序文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编辑配置文件"><span class="nav-number">6.</span> <span class="nav-text">编辑配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改app-py文件"><span class="nav-number">7.</span> <span class="nav-text">修改app.py文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动程序"><span class="nav-number">8.</span> <span class="nav-text">启动程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束"><span class="nav-number">9.</span> <span class="nav-text">结束</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ningxw</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = '';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'WC7T2lOHKOiT38n2BRMqQ4YD-gzGzoHsz',
+        appKey: 'do5cmS6Kl4OrS8J4Jd1SBu0p',
+        placeholder: 'ヾﾉ≧∀≦)o 留个言吧~',
+        avatar:'/images/avatar.jpg',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("WC7T2lOHKOiT38n2BRMqQ4YD-gzGzoHsz", "do5cmS6Kl4OrS8J4Jd1SBu0p");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
